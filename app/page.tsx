@@ -96,43 +96,6 @@ export default function PytjaLanding() {
         <div className="relative min-h-screen bg-[#0D0D0D]">
             <div className="fixed inset-0 bg-grid opacity-30 pointer-events-none" />
 
-            {/* --- HEADER (Bereinigt: Keine Animation beim Start mehr) --- */}
-            <header className="fixed top-0 w-full z-[150] border-b border-white/5 bg-[#0D0D0D]/80 backdrop-blur-xl">
-                <div className="max-w-7xl mx-auto px-6 md:px-8 h-16 md:h-20 flex items-center justify-between relative">
-                    {/* Logo */}
-                    <div className="flex items-center gap-3 relative z-[160]">
-                        <Logo3DP />
-                    </div>
-
-                    {/* DESKTOP NAV */}
-                    <nav className="hidden lg:flex items-center gap-10 text-[10px] tracking-[0.3em] text-gray-500 font-bold uppercase">
-                        <a href="#home" className="hover:text-white transition-colors">Home</a>
-                        <a href="#architecture" className="hover:text-white transition-colors">Arch</a>
-                        <a href="#modularity" className="hover:text-white transition-colors">Modules</a>
-                        <a href="#stats" className="hover:text-white transition-colors">Telemetry</a>
-                    </nav>
-
-                    {/* DESKTOP BUTTONS */}
-                    <div className="hidden md:flex items-center gap-4">
-                        <Link href="/contact" className="text-[10px] text-gray-400 font-bold hover:text-white transition-colors uppercase tracking-widest px-4">Contact</Link>
-                        <Link href="/dashboard" className="border border-white/20 bg-white/[0.03] text-white px-6 py-2.5 text-[10px] font-bold hover:border-white/50 transition-all uppercase tracking-widest">Terminal</Link>
-                    </div>
-
-                    {/* MOBILE MENU TRIGGER */}
-                    <button
-                        className="lg:hidden flex flex-col justify-center items-center w-10 h-10 relative z-[160] outline-none"
-                        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                    >
-                        <div className={`h-[1px] bg-white absolute w-6 transition-all duration-500 ease-in-out ${
-                            isMobileMenuOpen ? 'rotate-45 translate-y-0' : '-translate-y-1'
-                        }`} />
-                        <div className={`h-[1px] bg-white absolute w-6 transition-all duration-500 ease-in-out ${
-                            isMobileMenuOpen ? '-rotate-45 translate-y-0' : 'translate-y-1'
-                        }`} />
-                    </button>
-                </div>
-            </header>
-
             {/* MOBILE DROPDOWN OVERLAY - Mit Smooth Transition Guard */}
             <div
                 className={`fixed inset-0 z-[140] bg-[#050505] lg:hidden transition-all duration-500 ease-in-out flex flex-col ${
@@ -415,73 +378,6 @@ export default function PytjaLanding() {
                         </div>
                     </div>
                 </section>
-
-                {/* --- FOOTER --- */}
-                <footer className="border-t border-white/10 bg-[#050505] pt-24 pb-12 relative z-10">
-                    <div className="max-w-7xl mx-auto px-8">
-
-                        <div className="grid md:grid-cols-4 gap-12 mb-24">
-                            {/* Spalte 1: Brand */}
-                            <div className="space-y-6">
-                                <div className="flex items-center gap-2">
-                                    <div className="w-2 h-2 bg-white" />
-                                    <span className="font-bold text-lg tracking-tighter text-white uppercase">Pytja</span>
-                                </div>
-                                <p className="text-[10px] text-[#666] leading-relaxed max-w-[200px]">
-                                    Next-generation database exploration layer. Built with Rust for safety-critical environments.
-                                </p>
-                            </div>
-
-                            {/* Spalte 2: Product */}
-                            <div>
-                                <h4 className="text-[10px] font-bold text-white uppercase tracking-[0.2em] mb-6">Product</h4>
-                                <ul className="space-y-4 text-[11px] text-[#666] uppercase tracking-wider">
-                                    <li><a href="#" className="hover:text-white transition-colors">Features</a></li>
-                                    <li><a href="#" className="hover:text-white transition-colors">Security</a></li>
-                                    <li><a href="#" className="hover:text-white transition-colors">Enterprise</a></li>
-                                    <li><a href="#" className="hover:text-white transition-colors">Changelog</a></li>
-                                </ul>
-                            </div>
-
-                            {/* Spalte 3: Company */}
-                            <div>
-                                <h4 className="text-[10px] font-bold text-white uppercase tracking-[0.2em] mb-6">Company</h4>
-                                <ul className="space-y-4 text-[11px] text-[#666] uppercase tracking-wider">
-                                    <li><a href="#" className="hover:text-white transition-colors">About</a></li>
-                                    <li><a href="#" className="hover:text-white transition-colors">Blog</a></li>
-                                    <li><a href="#" className="hover:text-white transition-colors">Careers</a></li>
-                                    <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
-                                </ul>
-                            </div>
-
-                            {/* Spalte 4: Legal */}
-                            <div>
-                                <h4 className="text-[10px] font-bold text-white uppercase tracking-[0.2em] mb-6">Legal</h4>
-                                <ul className="space-y-4 text-[11px] text-[#666] uppercase tracking-wider">
-                                    <li><a href="#" className="hover:text-white transition-colors">Privacy</a></li>
-                                    <li><a href="#" className="hover:text-white transition-colors">Terms</a></li>
-                                    <li><a href="#" className="hover:text-white transition-colors">Imprint</a></li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        {/* Bottom Bar */}
-                        <div className="border-t border-white/5 pt-12 flex flex-col md:flex-row justify-between items-center gap-6">
-                            <div className="text-[10px] text-[#444]">
-                                &copy; 2024 Pytja Inc. All rights reserved.
-                            </div>
-
-                            {/* System Status Indicator */}
-                            <div className="flex items-center gap-3 px-4 py-2 border border-white/5 bg-white/[0.02] rounded-full">
-                                <div className="relative flex items-center justify-center w-2 h-2">
-                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                                    <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-500"></span>
-                                </div>
-                                <span className="text-[9px] text-[#666] uppercase tracking-widest font-mono">All Systems Operational</span>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
 
             </main>
         </div>
