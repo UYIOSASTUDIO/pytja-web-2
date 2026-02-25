@@ -1,35 +1,60 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-:root {
-    --background: #0d0d0d;
-    --foreground: #e5e5e5;
-    --accent: #F46623;
+@theme {
+    --color-accent: #F46623;
+    --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
-body {
-    background: var(--background);
-    color: var(--foreground);
-    overflow-x: hidden;
+@layer base {
+    :root {
+        --background: #0d0d0d;
+        --foreground: #e5e5e5;
+    }
+    body {
+        background-color: var(--background);
+        color: var(--foreground);
+        overflow-x: clip;
+    }
 }
 
 .bg-grid {
     background-size: 60px 60px;
     background-image:
-            linear-gradient(to right, #161616 1px, transparent 1px),
-            linear-gradient(to bottom, #161616 1px, transparent 1px);
+            linear-gradient(to right, #1a1a1a 1px, transparent 1px),
+            linear-gradient(to bottom, #1a1a1a 1px, transparent 1px);
 }
 
+/* --- 3D ENGINE --- */
+.preserve-3d { transform-style: preserve-3d; }
+
+/* --- ATEM- & SCHWEBE-ANIMATIONEN --- */
+
+/* Das ganze Objekt bewegt sich synchron zum Atem nach oben und unten */
 @keyframes float {
-    0%, 100% { transform: translateY(0) rotateX(45deg) rotateZ(-20deg); }
-    50% { transform: translateY(-30px) rotateX(45deg) rotateZ(-20deg); }
+    0%, 100% { transform: translateY(0px) rotateX(60deg) rotateZ(-45deg); }
+    50% { transform: translateY(-40px) rotateX(60deg) rotateZ(-45deg); }
 }
 
 .animate-float {
     animation: float 6s ease-in-out infinite;
 }
 
-.perspective-2000 {
-    perspective: 2000px;
+/* Die Schichten ziehen sich nicht komplett zusammen, sondern lassen 15px Spalt.
+   Top geht auf 45px (statt 30px), Bottom geht auf -45px (statt -30px). */
+@keyframes breathe-top {
+    0%, 100% { transform: translateZ(45px); }
+    50% { transform: translateZ(120px); }
 }
+@keyframes breathe-mid {
+    /* Die mittlere Schicht bleibt statisch im Zentrum */
+    0%, 100% { transform: translateZ(0px); }
+    50% { transform: translateZ(0px); }
+}
+@keyframes breathe-bot {
+    0%, 100% { transform: translateZ(-45px); }
+    50% { transform: translateZ(-120px); }
+}
+
+.animate-breathe-top { animation: breathe-top 6s ease-in-out infinite; }
+.animate-breathe-mid { animation: breathe-mid 6s ease-in-out infinite; }
+.animate-breathe-bot { animation: breathe-bot 6s ease-in-out infinite; }
