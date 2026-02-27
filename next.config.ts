@@ -1,16 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-    // Erlaubt deinem Handy den Zugriff auf den Dev-Server
-    experimental: {
-        allowedDevOrigins: ["192.168.1.4", "localhost:3000"]
-    },
-    // Optimiert den Build für Vercel
+    // allowedDevOrigins und eslint wurden hier entfernt, da sie ungültig sind
     typescript: {
-        ignoreBuildErrors: true, // Erlaubt Deployment auch bei kleinen Typ-Fehlern
-    },
-    eslint: {
-        ignoreDuringBuilds: true, // Verhindert den ERESOLVE Fehler auf Vercel
+        ignoreBuildErrors: true,
     }
 };
 

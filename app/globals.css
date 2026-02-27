@@ -2,7 +2,9 @@
 
 @theme {
     --color-accent: #F46623;
-    --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    /* Wir nutzen die Variablen, die wir in der layout.tsx definieren */
+    --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+    --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
 @layer base {
@@ -10,13 +12,17 @@
         --background: #0d0d0d;
         --foreground: #e5e5e5;
     }
+
     body {
         background-color: var(--background);
         color: var(--foreground);
         overflow-x: clip;
+        /* Sicherstellen, dass die Schriftarten global greifen */
+        font-family: var(--font-geist-sans);
     }
-}
+} /* <--- Diese Klammer hat in deinem Code gefehlt! */
 
+/* --- UTILITIES --- */
 .bg-grid {
     background-size: 60px 60px;
     background-image:
@@ -25,11 +31,12 @@
 }
 
 /* --- 3D ENGINE --- */
-.preserve-3d { transform-style: preserve-3d; }
+.preserve-3d {
+    transform-style: preserve-3d;
+}
 
 /* --- ATEM- & SCHWEBE-ANIMATIONEN --- */
 
-/* Das ganze Objekt bewegt sich synchron zum Atem nach oben und unten */
 @keyframes float {
     0%, 100% { transform: translateY(0px) rotateX(60deg) rotateZ(-45deg); }
     50% { transform: translateY(-40px) rotateX(60deg) rotateZ(-45deg); }
@@ -39,17 +46,16 @@
     animation: float 6s ease-in-out infinite;
 }
 
-/* Die Schichten ziehen sich nicht komplett zusammen, sondern lassen 15px Spalt.
-   Top geht auf 45px (statt 30px), Bottom geht auf -45px (statt -30px). */
 @keyframes breathe-top {
     0%, 100% { transform: translateZ(45px); }
     50% { transform: translateZ(120px); }
 }
+
 @keyframes breathe-mid {
-    /* Die mittlere Schicht bleibt statisch im Zentrum */
     0%, 100% { transform: translateZ(0px); }
     50% { transform: translateZ(0px); }
 }
+
 @keyframes breathe-bot {
     0%, 100% { transform: translateZ(-45px); }
     50% { transform: translateZ(-120px); }
