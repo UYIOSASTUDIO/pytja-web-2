@@ -2,9 +2,7 @@
 
 @theme {
     --color-accent: #F46623;
-    /* Wir nutzen die Variablen, die wir in der layout.tsx definieren */
-    --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-    --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular;
 }
 
 @layer base {
@@ -12,17 +10,13 @@
         --background: #0d0d0d;
         --foreground: #e5e5e5;
     }
-
     body {
         background-color: var(--background);
         color: var(--foreground);
         overflow-x: clip;
-        /* Sicherstellen, dass die Schriftarten global greifen */
-        font-family: var(--font-geist-sans);
     }
-} /* <--- Diese Klammer hat in deinem Code gefehlt! */
+}
 
-/* --- UTILITIES --- */
 .bg-grid {
     background-size: 60px 60px;
     background-image:
@@ -30,25 +24,21 @@
             linear-gradient(to bottom, #1a1a1a 1px, transparent 1px);
 }
 
-/* --- 3D ENGINE --- */
+/* Am Ende der globals.css */
+
 .preserve-3d {
     transform-style: preserve-3d;
+    backface-visibility: hidden;
 }
-
-/* --- ATEM- & SCHWEBE-ANIMATIONEN --- */
 
 @keyframes float {
-    0%, 100% { transform: translateY(0px) rotateX(60deg) rotateZ(-45deg); }
-    50% { transform: translateY(-40px) rotateX(60deg) rotateZ(-45deg); }
-}
-
-.animate-float {
-    animation: float 6s ease-in-out infinite;
+    0%, 100% { transform: translateY(0px) rotateX(50deg) rotateZ(-30deg); }
+    50% { transform: translateY(-10px) rotateX(50deg) rotateZ(-30deg); }
 }
 
 @keyframes breathe-top {
-    0%, 100% { transform: translateZ(45px); }
-    50% { transform: translateZ(120px); }
+    0%, 100% { transform: translateZ(20px); }
+    50% { transform: translateZ(40px); }
 }
 
 @keyframes breathe-mid {
@@ -57,10 +47,11 @@
 }
 
 @keyframes breathe-bot {
-    0%, 100% { transform: translateZ(-45px); }
-    50% { transform: translateZ(-120px); }
+    0%, 100% { transform: translateZ(-20px); }
+    50% { transform: translateZ(-40px); }
 }
 
-.animate-breathe-top { animation: breathe-top 6s ease-in-out infinite; }
-.animate-breathe-mid { animation: breathe-mid 6s ease-in-out infinite; }
-.animate-breathe-bot { animation: breathe-bot 6s ease-in-out infinite; }
+.animate-float { animation: float 5s ease-in-out infinite; }
+.animate-breathe-top { animation: breathe-top 5s ease-in-out infinite; }
+.animate-breathe-mid { animation: breathe-mid 5s ease-in-out infinite; }
+.animate-breathe-bot { animation: breathe-bot 5s ease-in-out infinite; }

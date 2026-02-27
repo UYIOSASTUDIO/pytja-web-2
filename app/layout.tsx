@@ -6,21 +6,15 @@ import ClientLayout from "./components/layout/ClientLayout";
 const fontSans = Inter({
     subsets: ["latin"],
     variable: "--font-geist-sans",
-    display: "swap",
 });
 
 const fontMono = JetBrains_Mono({
     subsets: ["latin"],
     variable: "--font-geist-mono",
-    display: "swap",
 });
 
 export const metadata: Metadata = {
-    metadataBase: new URL('https://pytja.com'),
-    title: {
-        default: "Pytja - Database Exploration",
-        template: "%s | Pytja"
-    },
+    title: "Pytja - Database Exploration",
     description: "Secure, in-memory database client built with Rust.",
 };
 
