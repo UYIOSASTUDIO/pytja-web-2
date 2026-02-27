@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import Link from 'next/link';
+import { motion, LayoutGroup } from 'framer-motion';
 
 export default function ManualPage() {
     const [mounted, setMounted] = useState(false);
@@ -21,35 +22,56 @@ export default function ManualPage() {
 
     if (!mounted) return null;
 
-    // --- PORTAL CONTENT: STICKY BAR ---
-    // Dieser Teil wird direkt in den <body> gerendert.
-    // Kein Eltern-Div kann hier die 'position: fixed' stören.
+    // --- PORTAL CONTENT: STICKY BAR (Updated Design) ---
     const stickyBar = (
         <div
-            className="fixed bottom-0 left-0 right-0 w-full z-[99999] px-6 py-4 md:py-6"
+            className="fixed bottom-0 left-0 right-0 w-full z-[99999] px-6 py-6 flex justify-center pointer-events-none"
             style={{ paddingBottom: 'max(1.5rem, env(safe-area-inset-bottom))' }}
         >
-            <div className="max-w-xl mx-auto flex justify-center w-full">
-                <div className="grid grid-cols-2 gap-2 w-full md:w-auto bg-[#0A0A0A] p-1 border border-white/10 rounded-sm shadow-2xl">
+            <div className="pointer-events-auto flex w-full max-w-sm justify-between p-1.5 bg-[#0A0A0A]/90 backdrop-blur-xl border border-white/10 rounded-full shadow-[0_10px_40px_-10px_rgba(0,0,0,0.8)]">
+
+                <LayoutGroup id="manual-toggle">
+                    {/* BUTTON 1: CORE BINARY */}
                     <button
                         onClick={() => setActiveMethod('binary')}
-                        className={`px-4 py-3 text-[10px] font-bold uppercase tracking-[0.1em] transition-all duration-300 flex justify-center items-center gap-2 rounded-sm whitespace-nowrap ${
-                            activeMethod === 'binary' ? 'bg-white text-black' : 'text-white/40 hover:text-white'
+                        className={`relative flex-1 py-3 text-[10px] font-bold uppercase tracking-widest rounded-full transition-colors duration-300 flex justify-center items-center gap-2 ${
+                            activeMethod === 'binary' ? 'text-black' : 'text-white/40 hover:text-white'
                         }`}
                     >
-                        <BinaryIcon />
-                        <span>Core Binary</span>
+                        {activeMethod === 'binary' && (
+                            <motion.div
+                                layoutId="activeMethodManual"
+                                className="absolute inset-0 bg-white rounded-full"
+                                transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                                style={{ zIndex: 0 }}
+                            />
+                        )}
+                        <span className="relative z-10 flex items-center gap-2">
+                            <BinaryIcon /> Core Binary
+                        </span>
                     </button>
+
+                    {/* BUTTON 2: SOURCE BUILD (Blau) */}
                     <button
                         onClick={() => setActiveMethod('source')}
-                        className={`px-4 py-3 text-[10px] font-bold uppercase tracking-[0.1em] transition-all duration-300 flex justify-center items-center gap-2 rounded-sm whitespace-nowrap ${
-                            activeMethod === 'source' ? 'bg-blue-600 text-white shadow-[0_0_15px_rgba(37,99,235,0.4)]' : 'text-white/40 hover:text-white'
+                        className={`relative flex-1 py-3 text-[10px] font-bold uppercase tracking-widest rounded-full transition-colors duration-300 flex justify-center items-center gap-2 ${
+                            activeMethod === 'source' ? 'text-white' : 'text-white/40 hover:text-white'
                         }`}
                     >
-                        <GithubIcon />
-                        <span>Source Build</span>
+                        {activeMethod === 'source' && (
+                            <motion.div
+                                layoutId="activeMethodManual"
+                                className="absolute inset-0 bg-blue-600 rounded-full shadow-[0_0_15px_rgba(37,99,235,0.4)]"
+                                transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                                style={{ zIndex: 0 }}
+                            />
+                        )}
+                        <span className="relative z-10 flex items-center gap-2">
+                            <GithubIcon /> Source Build
+                        </span>
                     </button>
-                </div>
+                </LayoutGroup>
+
             </div>
         </div>
     );
@@ -92,7 +114,11 @@ export default function ManualPage() {
                 {/* Header Text */}
                 <div className="text-center space-y-6 mb-16">
                     <div className="inline-flex items-center gap-2 border border-white/10 bg-white/[0.02] px-3 py-1 rounded-full">
-                        <span className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse shadow-[0_0_10px_#3b82f6]" />
+                        {/* ANIMATION: Square Prerelease Style */}
+                        <div className="relative flex items-center justify-center w-2 h-2">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-sm bg-white/40 opacity-75"></span>
+                            <span className="relative inline-flex rounded-sm h-1.5 w-1.5 bg-white/80"></span>
+                        </div>
                         <span className="text-[9px] uppercase tracking-[0.3em] text-white/60">Documentation</span>
                     </div>
                     <h1 className="text-4xl md:text-5xl font-black tracking-tighter uppercase text-white">
@@ -105,23 +131,25 @@ export default function ManualPage() {
                     {activeMethod === 'binary' ? (
                         <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 space-y-8 md:space-y-0">
                             <ManualStep number="01" title="Acquire Artifact" desc="Download the pre-compiled binary matching your architecture. Ensure the file is not corrupted.">
-                                <CommandBlock cmd="curl -L https://get.pytja.com/latest -o pytja" />
+                                {/* HIER: variant="white" */}
+                                <CommandBlock variant="white" cmd="curl -L https://get.pytja.com/latest -o pytja" />
                             </ManualStep>
                             <Divider />
                             <ManualStep number="02" title="Verify Signature" desc="CRITICAL: Verify the SHA-256 hash against the official transparency log before execution.">
-                                <CommandBlock cmd="shasum -a 256 pytja" output="e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  pytja" />
+                                <CommandBlock variant="white" cmd="shasum -a 256 pytja" output="e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  pytja" />
                             </ManualStep>
                             <Divider />
                             <ManualStep number="03" title="Grant Permissions" desc="The binary is locked by default. You must explicitly allow execution on Unix-based systems.">
-                                <CommandBlock cmd="chmod +x pytja" />
+                                <CommandBlock variant="white" cmd="chmod +x pytja" />
                             </ManualStep>
                             <Divider />
                             <ManualStep number="04" title="Initialize Core" desc="Run the binary. The Pytja kernel will allocate isolated memory and start the listener.">
-                                <CommandBlock cmd="./pytja --init" output="[INFO] Core initialized. Memory lock established." />
+                                <CommandBlock variant="white" cmd="./pytja --init" output="[INFO] Core initialized. Memory lock established." />
                             </ManualStep>
                         </div>
                     ) : (
                         <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 space-y-8 md:space-y-0">
+                            {/* Source Build bleibt BLAU (default) */}
                             <ManualStep number="01" title="Prerequisites" desc="Ensure the Rust toolchain (cargo, rustc) and protocol buffers are installed on your build machine.">
                                 <CommandBlock cmd="curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh" />
                             </ManualStep>
@@ -170,7 +198,7 @@ function ManualStep({ number, title, desc, children }: { number: string, title: 
     );
 }
 
-function CommandBlock({ cmd, output }: { cmd: string, output?: string }) {
+function CommandBlock({ cmd, output, variant = 'blue' }: { cmd: string, output?: string, variant?: 'blue' | 'white' }) {
     const [copied, setCopied] = useState(false);
 
     const handleCopy = () => {
@@ -179,11 +207,14 @@ function CommandBlock({ cmd, output }: { cmd: string, output?: string }) {
         setTimeout(() => setCopied(false), 2000);
     };
 
+    const barColor = variant === 'white' ? 'bg-white/20' : 'bg-blue-500/20';
+    const promptColor = variant === 'white' ? 'text-white' : 'text-blue-500';
+
     return (
         <div className="w-full bg-[#050505] border border-white/10 p-4 font-mono text-xs rounded-sm group-hover:border-white/20 transition-colors relative">
-            <div className="absolute top-0 left-0 w-1 h-full bg-blue-500/20" />
+            {/* FIX: 'rounded-l-sm' hinzugefügt, damit sich der Balken links dem Container anpasst */}
+            <div className={`absolute top-0 left-0 w-1 h-full rounded-l-sm ${barColor}`} />
 
-            {/* Copy Button: Leicht angepasst (top-3.5), damit er mittig zur Textzeile sitzt */}
             <button
                 onClick={handleCopy}
                 className="absolute top-3.5 right-3 p-2 bg-[#050505]/80 text-white/30 hover:text-white border border-transparent hover:border-white/10 rounded-sm transition-all z-10"
@@ -201,10 +232,9 @@ function CommandBlock({ cmd, output }: { cmd: string, output?: string }) {
                 )}
             </button>
 
-            {/* WICHTIG: 'py-2' sorgt für gleichen Abstand oben und unten (Zentrierung) */}
             <div className="overflow-x-auto code-scroll py-2 pr-12">
                 <div className="flex items-center gap-3 text-white/80 whitespace-nowrap">
-                    <span className="text-blue-500 font-bold select-none">$</span>
+                    <span className={`${promptColor} font-bold select-none`}>$</span>
                     <span className="select-all">{cmd}</span>
                 </div>
             </div>

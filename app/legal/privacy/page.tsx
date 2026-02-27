@@ -1,38 +1,80 @@
+import Link from 'next/link';
+
 export default function PrivacyPage() {
     return (
         <div className="space-y-12">
-            <div>
-                <h1 className="text-4xl font-black uppercase tracking-tighter mb-2">Privacy Policy</h1>
-                <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest">Data Protection & GDPR</p>
+
+            {/* Header */}
+            <div className="border-b border-white/10 pb-8">
+                <h1 className="text-4xl md:text-5xl font-black uppercase tracking-tighter mb-4 text-white">Privacy Policy</h1>
+                <div className="flex items-center gap-4 text-[10px] font-mono text-white/40 uppercase tracking-widest">
+                    <span>Data Protection & GDPR</span>
+                    <span className="w-1 h-1 bg-white/40 rounded-full" />
+                    <span>Effective: May 2024</span>
+                </div>
             </div>
 
-            <div className="space-y-8 text-sm text-white/70 font-light leading-relaxed">
-                <p>
-                    Your privacy is critical to us. Pytja is designed as a "Zero-Trace" tool, and we apply the same philosophy to this website. We collect as little data as possible.
-                </p>
+            {/* Content */}
+            <div className="space-y-10 text-sm text-gray-400 font-light leading-relaxed">
+
+                {/* Zero-Trace Philosophy Highlight */}
+                <div className="p-6 border-l-2 border-white bg-white/[0.02] text-white/80 font-mono text-xs leading-relaxed uppercase tracking-wider relative group hover:bg-white/[0.04] transition-colors">
+                    <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-white/20 to-transparent" />
+                    Zero-Trace Philosophy: Pytja is engineered to leave no unauthorized footprints. This principle extends to our web presence. We do not monetize your data, deploy third-party trackers, or collect unnecessary telemetry.
+                </div>
 
                 <section className="space-y-4">
-                    <h2 className="text-xl font-bold text-white">1. Data Collection</h2>
+                    <h2 className="text-xl font-bold uppercase tracking-tight text-white">1. Controller Identity</h2>
                     <p>
-                        <strong>Server Log Files:</strong> When you visit our website, the server automatically collects standard data provided by your browser (IP address, browser type, time of access). This is technically necessary for stability and security.
-                    </p>
-                    <p>
-                        <strong>Contact Form:</strong> If you use our contact form, we store the data you enter (Email, Message, Reason) solely for the purpose of processing your inquiry. We do not share this data without your consent.
+                        The responsible party (Data Controller) for data processing on this website, pursuant to the General Data Protection Regulation (GDPR), is the entity listed in our <Link href="/legal/imprint" className="text-white hover:text-blue-400 underline transition-colors">Imprint</Link>.
                     </p>
                 </section>
 
                 <section className="space-y-4">
-                    <h2 className="text-xl font-bold text-white">2. Cookies & Analytics</h2>
+                    <h2 className="text-xl font-bold uppercase tracking-tight text-white">2. Data Collection on our Website</h2>
+                    <div className="space-y-4">
+                        <div>
+                            <h3 className="text-white font-semibold mb-1">Server Log Files</h3>
+                            <p>
+                                The provider of the pages automatically collects and stores information in so-called server log files, which your browser automatically transmits to us. These include: browser type/version, operating system, referrer URL, hostname of the accessing computer, and time of the server request. This data is technically necessary for stability and security. The legal basis for this is Art. 6 (1) (f) GDPR.
+                            </p>
+                        </div>
+                        <div>
+                            <h3 className="text-white font-semibold mb-1">Contact and Support Forms</h3>
+                            <p>
+                                If you send us inquiries via the contact form, your details from the inquiry form, including the contact details you provided there, will be stored by us strictly for the purpose of processing the inquiry and in the event of follow-up questions. We do not pass on this data without your explicit consent (Art. 6 (1) (b) GDPR).
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section className="space-y-4">
+                    <h2 className="text-xl font-bold uppercase tracking-tight text-white">3. Pytja Software Telemetry</h2>
                     <p>
-                        We do <strong>not</strong> use invasive tracking cookies or third-party analytics tools (like Google Analytics) on this marketing site. Pytja operates on a strict privacy-first basis.
+                        The Pytja software (CLI and Kernel) operates primarily in a decentralized, air-gapped capacity. Any telemetry, crash reporting, or diagnostic data generated by the software remains local by default. We do <strong>not</strong> monitor your database credentials, queries, or returned datasets. Any future network telemetry will be strictly opt-in.
                     </p>
                 </section>
 
                 <section className="space-y-4">
-                    <h2 className="text-xl font-bold text-white">3. Your Rights</h2>
+                    <h2 className="text-xl font-bold uppercase tracking-tight text-white">4. Cookies & Analytics</h2>
                     <p>
-                        You have the right to request information about your stored data, its origin, its recipients, and the purpose of its collection at no charge. You also have the right to request that it be corrected, blocked, or deleted.
+                        We do <strong>not</strong> use privacy-invasive tracking cookies, retargeting pixels, or third-party analytics tools (such as Google Analytics) on this marketing site. Pytja operates on a strict privacy-first basis. Any session management relies solely on technically necessary, local storage mechanisms.
                     </p>
+                </section>
+
+                <section className="space-y-4">
+                    <h2 className="text-xl font-bold uppercase tracking-tight text-white">5. Your GDPR Rights</h2>
+                    <p>
+                        As a data subject under the GDPR, you possess the following rights regarding your personal data:
+                    </p>
+                    <ul className="list-disc pl-5 space-y-2 text-gray-400 marker:text-white/30">
+                        <li><strong>Right to Access:</strong> Request information about your stored data, its origin, and its recipients.</li>
+                        <li><strong>Right to Rectification:</strong> Request correction of inaccurate data.</li>
+                        <li><strong>Right to Erasure ("Right to be Forgotten"):</strong> Request deletion of your data, provided no statutory retention obligations apply.</li>
+                        <li><strong>Right to Restrict Processing:</strong> Request the limitation of data processing under specific conditions.</li>
+                        <li><strong>Right to Data Portability:</strong> Receive data you provided in a structured, standard machine-readable format.</li>
+                        <li><strong>Right to Complain:</strong> File a complaint with the competent supervisory authority if you believe a violation has occurred.</li>
+                    </ul>
                 </section>
             </div>
         </div>

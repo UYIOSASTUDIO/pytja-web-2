@@ -174,9 +174,8 @@ export default function PytjaLanding() {
 
                                 {/* Subtext */}
                                 <p className="text-lg md:text-xl text-[#888] max-w-md mx-auto lg:mx-0 font-light leading-relaxed">
-                                    Isolated database exploration engine. Zero disk traces, pure native speed.
-                                </p>
-                            </div>
+                                    Zero-trace native speed. Unify your databases and extend via WASM plugins.</p>
+                                </div>
 
                             {/* Button */}
                             <div className="flex justify-center lg:justify-start">
@@ -186,8 +185,8 @@ export default function PytjaLanding() {
                                 >
                                     <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                                     <span className="text-[10px] text-white font-bold tracking-[0.3em] uppercase relative z-10">
-                        Launch Terminal
-                    </span>
+                                        Download Now
+                                    </span>
                                     <div className="flex items-center justify-end w-0 opacity-0 overflow-hidden transition-all duration-500 group-hover:w-6 group-hover:opacity-100 group-hover:ml-3 relative z-10">
                                         <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="square" strokeWidth="2" d="M5 12h14m-7-7 7 7-7 7" />
@@ -335,10 +334,10 @@ export default function PytjaLanding() {
                                 <span className="w-8 h-px bg-white/20" /> Modular Architecture
                             </div>
                             <h2 className="text-4xl md:text-5xl font-bold tracking-tighter text-white">
-                                Stackable <br/> <span className="text-white/40">Security Modules.</span>
+                                Modular by Design. <br/> <span className="text-white/40"> Powered by WASM.</span>
                             </h2>
                             <p className="text-[#888] text-sm md:text-base leading-relaxed font-light max-w-md">
-                                Unsere Architektur ist granular. Jeder Block repräsentiert ein isoliertes Rust-Modul. Klicken Sie auf den hervorgehobenen Kern-Block, um die dynamische Speicher-Allokation zu testen.
+                                Bring your own logic to the data. Pytja’s WebAssembly architecture allows you to extend the CLI with custom, ephemeral plugins that process information on the fly, ensuring absolute memory safety and zero host leakage.
                             </p>
                         </div>
 
@@ -350,7 +349,7 @@ export default function PytjaLanding() {
                     </div>
                 </section>
 
-                {/* --- STATS SECTION (Mit animierten Graphen) --- */}
+                {/* --- STATS SECTION (Mit logischen Graphen) --- */}
                 <section id="stats" className="py-32 border-t border-[#222] bg-[#0D0D0D] relative z-10">
                     <div className="max-w-7xl mx-auto px-8">
                         <div className="flex items-center justify-between mb-16">
@@ -360,21 +359,27 @@ export default function PytjaLanding() {
 
                         {/* Grid für die Graphen */}
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-[#222] border border-[#222]">
-                            <GraphCard title="Transfer Throughput" value="36 GB/s" sub="Peak Performance">
-                                <SpeedChart />
+
+                            {/* 1. O(1) Memory */}
+                            <GraphCard title="O(1) Memory Footprint" value="64 KB" sub="Constant Stream">
+                                <ConstantMemoryChart />
                             </GraphCard>
 
-                            <GraphCard title="Memory Isolation" value="100 %" sub="Strict Lock">
-                                <MemoryChart />
+                            {/* 2. Concurrency */}
+                            <GraphCard title="Async Concurrency" value="10k+" sub="Tokio Tasks">
+                                <ConcurrencyChart />
                             </GraphCard>
 
-                            <GraphCard title="Disk Write" value="0.0 MB" sub="Zero Trace">
-                                <DiskChart />
-                            </GraphCard>
-
-                            <GraphCard title="Engine Latency" value="0.2 ms" sub="Realtime">
+                            {/* 3. Latency */}
+                            <GraphCard title="Startup & Ping" value="< 5 ms" sub="Native Speed">
                                 <LatencyChart />
                             </GraphCard>
+
+                            {/* 4. Sandbox */}
+                            <GraphCard title="Host Isolation" value="100 %" sub="WASI-Jail Sandbox">
+                                <IsolationChart />
+                            </GraphCard>
+
                         </div>
                     </div>
                 </section>
@@ -461,21 +466,31 @@ function Interactive3DVisual() {
         >
             <WireframeCube
                 id={1}
-                label="gRPC STREAMING"
+                label={
+                    <div className="text-center">
+                        WASM Compute <br />
+                        Sandbox
+                    </div>
+                }
                 hoveredBlock={hoveredBlock}
                 setHoveredBlock={setHoveredBlock}
                 cubeRef={topCubeRef}
             />
             <WireframeCube
                 id={2}
-                label="REDIS HANDLING"
+                label="GRPC STREAMING"
                 hoveredBlock={hoveredBlock}
                 setHoveredBlock={setHoveredBlock}
                 cubeRef={midCubeRef}
             />
             <WireframeCube
                 id={3}
-                label="RUST CORE"
+                label={
+                    <div className="text-center">
+                        RUST & TOKIO <br />
+                        CORE
+                    </div>
+                }
                 hoveredBlock={hoveredBlock}
                 setHoveredBlock={setHoveredBlock}
                 cubeRef={botCubeRef}
@@ -686,8 +701,8 @@ function GraphCard({ title, value, sub, children }: { title: string, value: stri
                 </div>
             </div>
 
-            {/* Der Graph: Jetzt flacher und technischer */}
-            <div className="h-16 w-full opacity-40 group-hover:opacity-100 transition-opacity duration-500">
+            {/* FIX: Die Transition liegt jetzt direkt auf dem div, nicht nur im group-hover */}
+            <div className="h-16 w-full opacity-20 transition-opacity duration-700 ease-in-out group-hover:opacity-100">
                 {chartWithProps}
             </div>
 
@@ -699,86 +714,134 @@ function GraphCard({ title, value, sub, children }: { title: string, value: stri
     );
 }
 
-function SpeedChart({ visible }: { visible?: boolean }) {
+// 1. O(1) MEMORY CHART (Wilder Payload vs. flacher Memory)
+function ConstantMemoryChart({ visible }: { visible?: boolean }) {
     return (
         <svg viewBox="0 0 100 40" className="w-full h-full overflow-visible">
-            {/* Statische Hintergrund-Raster */}
+            {/* Statisches Raster */}
             <path d="M0 10 H100 M0 20 H100 M0 30 H100" stroke="white" strokeWidth="0.1" strokeOpacity="0.2" />
 
+            {/* HINTERGRUND: Fade-in der massiven Datenwelle */}
             <path
-                d="M0 35 L15 32 L25 38 L35 15 L45 22 L55 8 L65 12 L75 5 L85 18 L100 15"
+                d="M0 35 Q 25 35, 50 10 T 100 5"
                 fill="none"
                 stroke="white"
-                strokeWidth="0.8"
-                strokeDasharray="150"
-                strokeDashoffset={visible ? 0 : 150}
-                className="transition-all duration-[2500ms] ease-in-out shadow-[0_0_10px_rgba(255,255,255,0.3)]"
+                strokeWidth="0.5"
+                strokeOpacity={visible ? 0.5 : 0}
+                strokeDasharray="2 2"
+                style={{ transition: 'stroke-opacity 2s ease-out 0.3s' }}
             />
-        </svg> // <-- Hier war vorher fälschlicherweise ein </div>
+
+            {/* VORDERGRUND: Zeichnet die Linie elegant von links nach rechts */}
+            <path
+                d="M0 25 H 100"
+                fill="none"
+                stroke="white"
+                strokeWidth="1.5"
+                pathLength="100" // Normalisiert die Länge auf 100%
+                strokeDasharray="100"
+                strokeDashoffset={visible ? 0 : 100}
+                style={{ transition: 'stroke-dashoffset 1.5s ease-out' }}
+                className="shadow-[0_0_10px_rgba(255,255,255,0.5)]"
+            />
+        </svg>
     );
 }
 
-// 2. MEMORY CHART (Fix: Client-Side Randomness)
-function MemoryChart({ visible }: { visible?: boolean }) {
-    // Startet leer, damit Server & Client gleich sind
-    const [bars, setBars] = useState<number[]>([]);
-
-    useEffect(() => {
-        // Erst im Browser generieren wir die Zufallswerte
-        setBars(Array.from({ length: 10 }, (_, i) => 10 + (i * 2) + Math.random() * 10));
-    }, []);
+// 2. CONCURRENCY CHART (Diskrete Async-Streams mit horizontalen Plateaus)
+function ConcurrencyChart({ visible }: { visible?: boolean }) {
+    const paths = [
+        "M0 12 H15 C 25 12, 30 25, 40 25 H65 C 75 25, 80 5, 90 5 H100",
+        "M0 32 H25 C 35 32, 40 10, 50 10 H75 C 85 10, 90 20, 98 20 H100",
+        "M0 22 H40 C 50 22, 55 35, 65 35 H100",
+        "M0 28 H10 C 20 28, 25 15, 35 15 H55 C 65 15, 70 30, 80 30 H100"
+    ];
 
     return (
-        <svg viewBox="0 0 100 40" className="w-full h-full">
+        <svg viewBox="0 0 100 40" className="w-full h-full overflow-visible">
             <path d="M0 10 H100 M0 20 H100 M0 30 H100" stroke="white" strokeWidth="0.1" strokeOpacity="0.2" />
-            {bars.map((height, i) => (
-                <rect
+
+            {paths.map((d, i) => (
+                <path
                     key={i}
-                    x={i * 10 + 2}
-                    y={40 - height}
-                    width="2"
-                    height={height}
-                    fill="white"
-                    fillOpacity={visible ? "0.4" : "0"}
-                    className="transition-all duration-1000 ease-out"
-                    style={{ transitionDelay: `${i * 50}ms` }}
+                    d={d}
+                    fill="none"
+                    stroke="white"
+                    strokeWidth="1.5"
+                    pathLength="100" // Garantiert, dass sich auch komplexe Kurven perfekt zeichnen
+                    strokeDasharray="100"
+                    strokeDashoffset={visible ? 0 : 100}
+                    strokeOpacity={visible ? 0.3 + (i * 0.15) : 0}
+                    className="drop-shadow-[0_0_4px_rgba(255,255,255,0.4)]"
+                    style={{
+                        // Die Linien starten leicht versetzt und zeichnen sich unterschiedlich schnell
+                        transition: `stroke-dashoffset ${1.5 + (i * 0.3)}s ease-out ${i * 0.12}s, stroke-opacity ${1.5 + (i * 0.3)}s ease-out ${i * 0.12}s`
+                    }}
                 />
             ))}
         </svg>
     );
 }
 
-// 3. DISK CHART (Präzise Null-Linie mit Check-Impuls)
-function DiskChart({ visible }: { visible?: boolean }) {
+// 3. LATENCY CHART (Ein super-subtiler, flacher Micro-Ping)
+function LatencyChart({ visible }: { visible?: boolean }) {
     return (
         <svg viewBox="0 0 100 40" className="w-full h-full overflow-visible">
             <path d="M0 10 H100 M0 20 H100 M0 30 H100" stroke="white" strokeWidth="0.1" strokeOpacity="0.2" />
+
+            {/* Der schnelle Ping schießt von links nach rechts durch */}
             <path
-                d="M0 38 H 45 L 48 30 L 52 38 H 100"
+                d="M0 25 H 45 L 48 20 L 52 25 H 100"
                 fill="none"
                 stroke="white"
-                strokeWidth="0.8"
+                strokeWidth="1.5"
+                strokeLinejoin="round"
+                pathLength="100"
                 strokeDasharray="100"
                 strokeDashoffset={visible ? 0 : 100}
-                className="transition-all duration-[1500ms] ease-linear"
+                style={{ transition: 'stroke-dashoffset 0.8s ease-out' }}
+                className="shadow-[0_0_10px_rgba(255,255,255,0.4)]"
             />
         </svg>
     );
 }
 
-// 4. LATENCY CHART (Feine Sinus-Welle)
-function LatencyChart({ visible }: { visible?: boolean }) {
+// 4. ISOLATION CHART (Formatfüllende WASM-Jail Sandbox)
+function IsolationChart({ visible }: { visible?: boolean }) {
     return (
         <svg viewBox="0 0 100 40" className="w-full h-full overflow-visible">
             <path d="M0 10 H100 M0 20 H100 M0 30 H100" stroke="white" strokeWidth="0.1" strokeOpacity="0.2" />
-            <path
-                d="M0 20 Q 12.5 5, 25 20 T 50 20 T 75 20 T 100 20"
+
+            {/* Fade-In der äußeren Box */}
+            <rect
+                x="5" y="5" width="90" height="30"
                 fill="none"
                 stroke="white"
-                strokeWidth="0.8"
-                strokeDasharray="110"
-                strokeDashoffset={visible ? 0 : 110}
-                className="transition-all duration-[2000ms] ease-in-out"
+                strokeWidth="0.5"
+                strokeOpacity={visible ? 0.3 : 0}
+                strokeDasharray="4 2"
+                style={{ transition: 'stroke-opacity 1s ease-out' }}
+            />
+
+            {/* Die innere Linie zeichnet sich von links nach rechts */}
+            <path
+                d="M 15 20 H 85"
+                stroke="white"
+                strokeWidth="1.5"
+                pathLength="100"
+                strokeDasharray="100"
+                strokeDashoffset={visible ? 0 : 100}
+                style={{ transition: 'stroke-dashoffset 1.5s ease-out 0.3s' }}
+                className="shadow-[0_0_8px_rgba(255,255,255,0.6)]"
+            />
+
+            {/* Fade-in der beiden Blocker an den Seiten */}
+            <path
+                d="M 15 15 V 25 M 85 15 V 25"
+                stroke="white"
+                strokeWidth="1.5"
+                strokeOpacity={visible ? 1 : 0}
+                style={{ transition: 'stroke-opacity 0.5s ease-out 1.8s' }} // Tauchen erst auf, wenn die Linie fertig gezeichnet ist
             />
         </svg>
     );
