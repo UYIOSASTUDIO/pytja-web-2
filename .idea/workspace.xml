@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb564e1f-a707-4140-aab3-f886758e6606" name="Changes" comment="Commit 7" />
+    <list default="true" id="bb564e1f-a707-4140-aab3-f886758e6606" name="Changes" comment="Commit 8">
+      <change beforePath="$PROJECT_DIR$/next.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -108,7 +112,7 @@
       <workItem from="1771931127781" duration="23076000" />
       <workItem from="1772019153364" duration="19605000" />
       <workItem from="1772115876812" duration="8648000" />
-      <workItem from="1772192414107" duration="9832000" />
+      <workItem from="1772192414107" duration="10148000" />
     </task>
     <task id="LOCAL-00001" summary="Commit 1">
       <option name="closed" value="true" />
@@ -174,7 +178,15 @@
       <option name="project" value="LOCAL" />
       <updated>1772202586723</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Commit 8">
+      <option name="closed" value="true" />
+      <created>1772203068288</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1772203068288</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -188,6 +200,7 @@
     <MESSAGE value="Commit 5" />
     <MESSAGE value="Commit 6" />
     <MESSAGE value="Commit 7" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit 7" />
+    <MESSAGE value="Commit 8" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit 8" />
   </component>
 </project>
