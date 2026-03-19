@@ -1,72 +1,146 @@
 "use client";
 import React from 'react';
-import Link from 'next/link'; // WICHTIG: Das nutzen wir jetzt
+import Link from 'next/link';
 
 export default function Footer() {
     return (
-        <footer className="border-t border-white/10 bg-[#050505] pt-24 pb-12 relative z-10">
-            <div className="max-w-7xl mx-auto px-8">
+        <>
+            {/* --- GLOBAL PRE-RELEASE BANNER (Mit Full-Width Top-Border) --- */}
+            <div data-theme="dark" className="w-full bg-[#050505] border-t border-white/10 pt-16 lg:pt-24 pb-8 relative z-50">
+                {/* Das Padding px-6 md:px-12 lg:px-36 ist hier exakt identisch mit dem Footer unten! */}
+                <div className="max-w-[1600px] mx-auto px-6 md:px-12 lg:px-36">
 
-                <div className="grid md:grid-cols-4 gap-12 mb-24">
-                    {/* Spalte 1: Brand */}
-                    <div className="space-y-6">
-                        <div className="flex items-center gap-2">
-                            <span className="font-bold text-lg tracking-tighter text-white uppercase">Pytja</span>
+                    {/* Die Amber-Box (Warnkasten) */}
+                    <div className="p-6 md:p-8 border border-amber-500/20 bg-amber-500/5 rounded-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 md:gap-12">
+
+                        {/* Linker Teil: Ping & Text */}
+                        <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-start sm:items-center">
+
+                            <div>
+                                <h4 className="text-[11px] font-bold text-amber-500 uppercase tracking-widest mb-1.5">
+                                    V1 Pre-Release Phase
+                                </h4>
+                                <p className="text-[12px] md:text-[13px] text-amber-500/70 font-light leading-relaxed max-w-3xl">
+                                    While the foundational architecture is operational, Pytja is under active development. Anticipate edge-case bugs and non-optimized execution paths.
+                                </p>
+                            </div>
                         </div>
-                        <p className="text-[10px] text-[#666] leading-relaxed max-w-[200px]">
-                            Next-generation database exploration layer. Built with Rust for safety-critical environments.
-                        </p>
-                    </div>
 
-                    {/* Spalte 2: Product */}
-                    <div>
-                        <h4 className="text-[10px] font-bold text-white uppercase tracking-[0.2em] mb-6">Product</h4>
-                        <ul className="space-y-4 text-[11px] text-[#666] uppercase tracking-wider">
-                            {/* HIER GEÄNDERT: <Link> statt <a> */}
-                            <li><Link href="/download" className="hover:text-white transition-colors">Download</Link></li>
-                            <li><Link href="/manual" className="hover:text-white transition-colors">Manual</Link></li>
-                            <li><Link href="/modules" className="hover:text-white transition-colors">Modules</Link></li>
-                            <li><Link href="/code" className="hover:text-white transition-colors">Code</Link></li>
-                            <li><Link href="/changelog" className="hover:text-white transition-colors">Changelog</Link></li>
-                        </ul>
-                    </div>
-
-                    {/* Spalte 3: Company */}
-                    <div>
-                        <h4 className="text-[10px] font-bold text-white uppercase tracking-[0.2em] mb-6">Company</h4>
-                        <ul className="space-y-4 text-[11px] text-[#666] uppercase tracking-wider">
-                            <li><Link href="/about" className="hover:text-white transition-colors">About</Link></li>
-                            <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
-                        </ul>
-                    </div>
-
-                    {/* Spalte 4: Legal */}
-                    <div>
-                        <h4 className="text-[10px] font-bold text-white uppercase tracking-[0.2em] mb-6">Legal</h4>
-                        <ul className="space-y-4 text-[11px] text-[#666] uppercase tracking-wider">
-                            <li><Link href="/legal/privacy" className="hover:text-white transition-colors">Privacy</Link></li>
-                            <li><Link href="/legal/terms" className="hover:text-white transition-colors">Terms</Link></li>
-                            <li><Link href="/legal/imprint" className="hover:text-white transition-colors">Imprint</Link></li>
-                        </ul>
-                    </div>
-                </div>
-
-                {/* Bottom Bar */}
-                <div className="border-t border-white/5 pt-12 flex flex-col md:flex-row justify-between items-center gap-6">
-                    <div className="text-[10px] text-[#444]">
-                        &copy; 2026 Pytja. All rights reserved.
-                    </div>
-
-                    {/* System Status Indicator */}
-                    <div className="flex items-center gap-3 px-4 py-2 border border-white/5 bg-white/[0.02] rounded-full">
-                        <div className="relative flex items-center justify-center w-2 h-2">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-500"></span>
+                        {/* Rechter Teil: Button */}
+                        <div className="shrink-0 w-full md:w-auto mt-2 md:mt-0">
+                            <Link
+                                href="/contact"
+                                className="group flex items-center justify-center gap-2 px-6 py-3 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/20 text-[10px] font-bold text-amber-500 uppercase tracking-[0.2em] transition-colors rounded-md w-full md:w-fit"
+                            >
+                                Report Findings
+                                <svg className="w-3.5 h-3.5 transform transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                </svg>
+                            </Link>
                         </div>
-                        <span className="text-[9px] text-[#666] uppercase tracking-widest font-mono">All Systems Operational</span>
+
                     </div>
                 </div>
             </div>
-        </footer>
+
+            {/* --- ACTUAL FOOTER --- */}
+            <footer className="w-full bg-[#050505] relative z-10 pb-12 pt-8 md:pt-12">
+                <div className="max-w-[1600px] mx-auto px-6 md:px-12 lg:px-36">
+
+                    <div className="grid grid-cols-1 lg:grid-cols-10 gap-16 lg:gap-8 mb-24">
+
+                        {/* BRANDING & SOCIALS (Left side, takes up 4 of 10 columns) */}
+                        <div className="lg:col-span-4 flex flex-col justify-between">
+                            <div>
+                                <div className="font-bold text-xl tracking-tighter text-white uppercase mb-6">
+                                    Pytja
+                                </div>
+                                <p className="text-[14px] text-gray-500 leading-relaxed max-w-[280px] font-light mb-8">
+                                    Next-generation database exploration layer. Engineered with Rust for deterministic speed and absolute environment safety.
+                                </p>
+
+                                {/* Boxed Social Icons */}
+                                <div className="flex items-center gap-3">
+                                    {/* GitHub */}
+                                    <a href="https://github.com/pytja" target="_blank" rel="noopener noreferrer"
+                                       className="w-10 h-10 flex items-center justify-center rounded-lg border border-white/10 bg-white/[0.02] text-gray-400 hover:bg-white/[0.08] hover:border-white/20 hover:text-white transition-all group">
+                                        <svg className="w-4 h-4 transition-transform group-hover:scale-110" fill="currentColor" viewBox="0 0 24 24">
+                                            <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
+                                        </svg>
+                                    </a>
+
+                                    {/* X / Twitter */}
+                                    <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"
+                                       className="w-10 h-10 flex items-center justify-center rounded-lg border border-white/10 bg-white/[0.02] text-gray-400 hover:bg-white/[0.08] hover:border-white/20 hover:text-white transition-all group">
+                                        <svg className="w-3.5 h-3.5 transition-transform group-hover:scale-110" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" />
+                                        </svg>
+                                    </a>
+
+                                    {/* LinkedIn */}
+                                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"
+                                       className="w-10 h-10 flex items-center justify-center rounded-lg border border-white/10 bg-white/[0.02] text-gray-400 hover:bg-white/[0.08] hover:border-white/20 hover:text-white transition-all group">
+                                        <svg className="w-4 h-4 transition-transform group-hover:scale-110" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* LINKS (Right side, takes up 6 of 10 columns) */}
+                        <div className="lg:col-span-6 grid grid-cols-2 md:grid-cols-3 gap-12 lg:gap-8">
+
+                            <div>
+                                <h4 className="text-[10px] font-mono text-white/40 uppercase tracking-[0.2em] mb-6">Product</h4>
+                                <ul className="space-y-4 text-[13px] text-gray-400 font-medium">
+                                    <li><Link href="/download" className="hover:text-white transition-colors">Download</Link></li>
+                                    <li><Link href="/manual" className="hover:text-white transition-colors">Manual</Link></li>
+                                    <li><Link href="/modules" className="hover:text-white transition-colors">Modules</Link></li>
+                                    <li><Link href="https://github.com/pytja/pytja" className="hover:text-white transition-colors">Code</Link></li>
+                                    <li><Link href="/changelog" className="hover:text-white transition-colors">Changelog</Link></li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h4 className="text-[10px] font-mono text-white/40 uppercase tracking-[0.2em] mb-6">Company</h4>
+                                <ul className="space-y-4 text-[13px] text-gray-400 font-medium">
+                                    <li><Link href="/about" className="hover:text-white transition-colors">About</Link></li>
+                                    <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h4 className="text-[10px] font-mono text-white/40 uppercase tracking-[0.2em] mb-6">Legal</h4>
+                                <ul className="space-y-4 text-[13px] text-gray-400 font-medium">
+                                    <li><Link href="/legal/imprint" className="hover:text-white transition-colors">Imprint</Link></li>
+                                    <li><Link href="/legal/privacy" className="hover:text-white transition-colors">Privacy</Link></li>
+                                    <li><Link href="/legal/terms" className="hover:text-white transition-colors">Terms</Link></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    {/* Bottom Bar: Copyright & Raw System Status */}
+                    <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                        <div className="text-[12px] text-gray-600 font-medium">
+                            &copy; {new Date().getFullYear()} Pytja. All rights reserved. Distributed under MIT.
+                        </div>
+
+                        <div className="flex items-center gap-3">
+                            <div className="relative flex items-center justify-center w-2 h-2">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-sm bg-emerald-400 opacity-75"></span>
+                                <span className="relative inline-flex rounded-sm h-1.5 w-1.5 bg-emerald-500"></span>
+                            </div>
+                            <span className="text-[10px] text-gray-500 uppercase tracking-widest font-mono">
+                                All Systems Operational
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+            </footer>
+        </>
     );
 }

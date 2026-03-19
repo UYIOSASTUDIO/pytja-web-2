@@ -1,135 +1,27 @@
 "use client";
 import React, { useState, useEffect, useRef } from 'react';
-import Link from 'next/link';
-import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
-
-// --- TYPEN ---
-type ChangeType = 'security' | 'feature' | 'fix' | 'core';
-
-interface ChangeLogEntry {
-    version: string;
-    date: string;
-    hash: string;
-    type: ChangeType;
-    title: string;
-    desc: string;
-    changes: string[];
-}
-
-// --- DATEN ---
-const changelogData: ChangeLogEntry[] = [
-    {
-        version: "v1.0.4",
-        date: "2024-05-20",
-        hash: "a1b2c3d",
-        type: "security",
-        title: "Critical Memory Patch",
-        desc: "Fixed a potential heap overflow in the session handler. Recommended for all production nodes.",
-        changes: [
-            "Patched buffer bounds check in `session_manager.rs`",
-            "Enforced strict memory isolation for plugin runtime",
-            "Updated OpenSSL dependency to v3.2.1"
-        ]
-    },
-    {
-        version: "v1.0.3",
-        date: "2024-05-12",
-        hash: "e5f6g7h",
-        type: "feature",
-        title: "PostgreSQL Stream Support",
-        desc: "Native support for PostgreSQL 16 binary replication protocol. Zero-copy implementation.",
-        changes: [
-            "Added `pg_stream` module",
-            "Implemented logical replication slot handling",
-            "New telemetry metrics for throughput"
-        ]
-    },
-    {
-        version: "v1.0.2",
-        date: "2024-04-28",
-        hash: "i8j9k0l",
-        type: "fix",
-        title: "CLI Stability Improvements",
-        desc: "Addressed flickering issues in the TUI dashboard and improved connection retries.",
-        changes: [
-            "Fixed render loop in dashboard thread",
-            "Increased default connection timeout to 30s",
-            "Better error messages for auth failures"
-        ]
-    },
-    {
-        version: "v1.0.1",
-        date: "2024-04-10",
-        hash: "m1n2o3p",
-        type: "core",
-        title: "Initial Public Release",
-        desc: "First stable release of the Pytja Core Engine. Air-gapped by design.",
-        changes: [
-            "Core engine stable release",
-            "Plugin system V1",
-            "Documentation published"
-        ]
-    }
-];
-
-// --- NEU: SICHERE SUB-KOMPONENTE FÜR DIE LINIE (MIT SPRING-GLÄTTUNG) ---
-const AnimatedTimelineLine = ({ targetRef }: { targetRef: React.RefObject<HTMLElement | null> }) => {
-    const { scrollYProgress } = useScroll({
-        target: targetRef as React.RefObject<HTMLElement>,
-        offset: ["start center", "end center"]
-    });
-
-    // NEU: Wir legen eine "Feder" über den Scroll-Wert. Das bügelt jedes Chrome-Ruckeln glatt!
-    const smoothScaleY = useSpring(scrollYProgress, {
-        stiffness: 100, // Wie schnell die Linie dem Scrollen folgt
-        damping: 30,    // Verhindert ein "Nachwippen" am Ende
-        restDelta: 0.001
-    });
-
-    return (
-        <motion.div
-            className="absolute top-4 -bottom-16 left-[10px] md:left-[-6px] w-px z-0 origin-top"
-            style={{
-                scaleY: smoothScaleY, // HIER den neuen smoothen Wert einsetzen!
-                background: "linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 75%, rgba(255,255,255,0) 100%)"
-            }}
-        />
-    );
-};
+import { motion, AnimatePresence } from 'framer-motion';
+import { changelogData, ChangeType } from '@/lib/changelog';
 
 export default function ChangelogPage() {
     const [mounted, setMounted] = useState(false);
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [filter, setFilter] = useState<'all' | ChangeType>('all');
-
-    const [isFilterDropdownOpen, setIsFilterDropdownOpen] = useState(false);
     const filterRef = useRef<HTMLDivElement>(null);
-    const timelineRef = useRef<HTMLDivElement>(null);
+    const [isFilterDropdownOpen, setIsFilterDropdownOpen] = useState(false);
 
     useEffect(() => {
         setMounted(true);
-        const handleResize = () => {
-            const vh = window.innerHeight * 0.01;
-            document.documentElement.style.setProperty('--vh', `${vh}px`);
-        };
-        handleResize();
-        window.addEventListener('resize', handleResize);
-
         const handleClickOutside = (event: MouseEvent) => {
             if (filterRef.current && !filterRef.current.contains(event.target as Node)) {
                 setIsFilterDropdownOpen(false);
             }
         };
         document.addEventListener('mousedown', handleClickOutside);
-
         return () => {
-            window.removeEventListener('resize', handleResize);
             document.removeEventListener('mousedown', handleClickOutside);
         };
     }, []);
 
-    // Wenn nicht gemounted (also noch auf dem Server), render nichts.
-    // So schützen wir alle Browser-spezifischen Hooks!
     if (!mounted) return null;
 
     const filteredData = filter === 'all'
@@ -147,187 +39,204 @@ export default function ChangelogPage() {
     const currentFilterLabel = filterOptions.find(f => f.id === filter)?.label || 'All Updates';
 
     return (
-        <div className="relative min-h-screen bg-[#0D0D0D] text-white font-mono overflow-x-hidden selection:bg-white/20">
+        <div className="relative min-h-screen bg-white text-black font-sans selection:bg-black selection:text-white overflow-x-hidden">
             <style jsx global>{`
                 html { overflow-y: auto; overflow-x: hidden; height: auto; }
-                body { background-color: #0D0D0D; min-height: 100vh; position: relative; }
+                body { background-color: #ffffff; min-height: 100vh; position: relative; }
             `}</style>
 
-            <div className="fixed inset-0 bg-grid opacity-20 pointer-events-none z-0" />
+            <main className="relative z-10 pt-32 md:pt-40">
 
-            {/* --- MOBILE NAV OVERLAY --- */}
-            <div className={`fixed inset-0 z-[140] bg-[#050505] lg:hidden transition-all duration-500 ease-in-out flex flex-col ${isMobileMenuOpen ? 'opacity-100 translate-y-0 pointer-events-auto visible' : 'opacity-0 -translate-y-4 pointer-events-none invisible'}`} style={{ height: 'calc(var(--vh, 1vh) * 100)' }}>
-                <div className="absolute inset-0 bg-grid opacity-10 pointer-events-none z-0" />
-                <div className="relative z-10 flex flex-col h-full pt-32 px-10 gap-12 overflow-y-auto">
-                    <nav className="flex flex-col gap-8 shrink-0">
-                        {['Home', 'Architecture', 'Modularity', 'Stats'].map((item) => (
-                            <Link key={item} href={`/#${item.toLowerCase()}`} onClick={() => setIsMobileMenuOpen(false)} className="text-3xl font-bold tracking-tighter text-white/40 hover:text-white flex items-baseline gap-4">
-                                <span className="text-[10px] font-mono text-white/10">01</span>{item}
-                            </Link>
-                        ))}
-                    </nav>
-                    <div className="mt-auto pb-24 flex flex-col gap-4 shrink-0">
-                        <Link href="/contact" className="w-full py-4 text-center text-[10px] font-bold uppercase border border-white/5 text-white/40">Contact Support</Link>
-                        <Link href="/download" className="w-full py-5 text-center text-[10px] font-bold uppercase bg-white text-black">Download</Link>
-                    </div>
-                </div>
-            </div>
+                {/* --- HERO HEADER --- */}
+                <div className="w-full">
+                    <div className="max-w-[1600px] mx-auto px-6 md:px-12 lg:px-24">
+                        <div className="py-16 md:py-8 md:px-8 lg:px-12">
 
-            {/* --- MAIN CONTENT --- */}
-            <main className="relative z-10 pt-32 pb-20 px-6 md:px-8 max-w-5xl mx-auto min-h-[90vh]">
-
-                <div className="text-center space-y-6 mb-16">
-                    <div className="inline-flex items-center gap-2 border border-white/10 bg-white/[0.02] px-3 py-1 rounded-full">
-                        <div className="relative flex items-center justify-center w-2 h-2">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-sm bg-white/40 opacity-75"></span>
-                            <span className="relative inline-flex rounded-sm h-1.5 w-1.5 bg-white/80"></span>
-                        </div>
-                        <span className="text-[9px] uppercase tracking-[0.3em] text-white/60">System Log</span>
-                    </div>
-                    <h1 className="text-4xl md:text-5xl font-black tracking-tighter uppercase text-white">
-                        Project <span className="text-white/30">Changelog</span>
-                    </h1>
-                </div>
-
-                <div className="sticky top-20 md:top-24 z-30 mb-20 flex justify-center">
-                    <div className="md:hidden w-full max-w-sm" ref={filterRef}>
-                        <div className="bg-[#0A0A0A] border border-white/10 rounded-3xl overflow-hidden transition-all duration-300">
-                            <button
-                                onClick={() => setIsFilterDropdownOpen(!isFilterDropdownOpen)}
-                                className={`w-full flex items-center justify-between px-6 py-4 text-white text-[10px] font-bold uppercase tracking-widest transition-colors ${
-                                    isFilterDropdownOpen ? 'bg-white/5' : 'hover:bg-white/5'
-                                }`}
-                            >
-                                <span>Filter: {currentFilterLabel}</span>
-                                <motion.svg
-                                    animate={{ rotate: isFilterDropdownOpen ? 180 : 0 }}
-                                    transition={{ duration: 0.3 }}
-                                    className="w-3 h-3"
-                                    fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                                >
-                                    <path strokeLinecap="square" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                                </motion.svg>
-                            </button>
-
-                            <AnimatePresence initial={false}>
-                                {isFilterDropdownOpen && (
-                                    <motion.div
-                                        initial={{ height: 0, opacity: 0 }}
-                                        animate={{ height: "auto", opacity: 1 }}
-                                        exit={{ height: 0, opacity: 0 }}
-                                        transition={{ duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] }}
-                                    >
-                                        <div className="flex flex-col border-t border-white/5">
-                                            {filterOptions.map((opt) => (
-                                                <button
-                                                    key={opt.id}
-                                                    onClick={() => {
-                                                        setFilter(opt.id);
-                                                        setIsFilterDropdownOpen(false);
-                                                    }}
-                                                    className={`w-full text-left px-6 py-4 text-[10px] font-bold uppercase tracking-widest border-b border-white/5 last:border-0 hover:bg-white/5 transition-colors ${
-                                                        filter === opt.id ? 'text-white bg-white/5' : 'text-white/40'
-                                                    }`}
-                                                >
-                                                    {opt.label}
-                                                </button>
-                                            ))}
-                                        </div>
-                                    </motion.div>
-                                )}
-                            </AnimatePresence>
+                            <h1 className="text-4xl md:text-5xl lg:text-[56px] font-medium tracking-tight text-black mb-6 leading-[1.1]">
+                                View the Development
+                            </h1>
+                            <p className="text-[15px] md:text-[16px] text-gray-500 max-w-2xl font-light leading-relaxed">
+                                Track the evolution of the Pytja core engine. This ledger contains all major architectural shifts, security patches, and feature additions.
+                            </p>
                         </div>
                     </div>
+                </div>
 
-                    <div className="hidden md:inline-flex gap-2 p-1 bg-[#0A0A0A]/80 backdrop-blur-md border border-white/10 rounded-full">
-                        {filterOptions.map((btn) => {
-                            const isActive = filter === btn.id;
-                            return (
+                {/* --- STATIC FILTER BAR --- */}
+                <section className="w-full border-y border-black/10 bg-white relative z-30 mt-8">
+                    <div className="max-w-[1600px] mx-auto px-6 md:px-12 lg:px-24 py-6 md:py-8 flex justify-center items-center">
+
+                        {/* Mobile Dropdown */}
+                        <div className="md:hidden w-full max-w-sm relative" ref={filterRef}>
+                            <div className="bg-white border border-black/10 rounded-lg shadow-sm overflow-hidden transition-all duration-300 absolute w-full top-0 left-0 z-50">
                                 <button
-                                    key={btn.id}
-                                    onClick={() => setFilter(btn.id)}
-                                    className={`relative px-6 py-2 text-[10px] font-bold uppercase tracking-widest rounded-full transition-colors duration-300 ${
-                                        isActive ? 'text-black' : 'text-white/40 hover:text-white'
+                                    onClick={() => setIsFilterDropdownOpen(!isFilterDropdownOpen)}
+                                    className={`w-full flex items-center justify-between px-6 py-4 text-black text-[10px] font-bold uppercase tracking-widest transition-colors ${
+                                        isFilterDropdownOpen ? 'bg-black/[0.02]' : 'hover:bg-black/[0.02]'
                                     }`}
                                 >
-                                    {isActive && (
-                                        <motion.div
-                                            layoutId="activeFilter"
-                                            className="absolute inset-0 bg-white rounded-full"
-                                            transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                                            style={{ zIndex: 0 }}
-                                        />
-                                    )}
-                                    <span className="relative z-10">{btn.label}</span>
+                                    <span>Filter: {currentFilterLabel}</span>
+                                    <motion.svg
+                                        animate={{ rotate: isFilterDropdownOpen ? 180 : 0 }}
+                                        transition={{ duration: 0.3 }}
+                                        className="w-3 h-3"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"
+                                    >
+                                        <path strokeLinecap="square" d="M19 9l-7 7-7-7" />
+                                    </motion.svg>
                                 </button>
-                            );
-                        })}
-                    </div>
-                </div>
 
-                <div ref={timelineRef} className="relative pl-4 md:pl-0 space-y-16">
-
-                    {/* 1. Die statische graue Hintergrund-Linie */}
-                    <div className="absolute top-4 -bottom-16 left-[10px] md:left-[-6px] w-px bg-white/10 z-0" />
-
-                    {/* 2. Die animierte weiße Linie - Sicher ausgelagert */}
-                    <AnimatedTimelineLine targetRef={timelineRef} />
-
-                    {filteredData.map((entry, i) => (
-                        <div key={i} className="relative pl-4 md:pl-8 group z-10">
-
-                            {/* Fix für den CSS Syntax Fehler in den Breakpoints */}
-                            <div className="absolute -left-[5.5px] md:-left-[5.5px] top-2.5 p-1 -translate-x-1/2">
-                                <div className="relative flex items-center justify-center w-2 h-2">
-                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-sm bg-white/40 opacity-75"></span>
-                                    <span className="relative inline-flex rounded-sm h-1.5 w-1.5 bg-white shadow-[0_0_10px_rgba(255,255,255,0.8)]"></span>
-                                </div>
+                                <AnimatePresence initial={false}>
+                                    {isFilterDropdownOpen && (
+                                        <motion.div
+                                            initial={{ height: 0, opacity: 0 }}
+                                            animate={{ height: "auto", opacity: 1 }}
+                                            exit={{ height: 0, opacity: 0 }}
+                                            transition={{ duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] }}
+                                        >
+                                            <div className="flex flex-col border-t border-black/10">
+                                                {filterOptions.map((opt) => (
+                                                    <button
+                                                        key={opt.id}
+                                                        onClick={() => {
+                                                            setFilter(opt.id);
+                                                            setIsFilterDropdownOpen(false);
+                                                        }}
+                                                        className={`w-full text-left px-6 py-4 text-[10px] font-bold uppercase tracking-widest border-b border-black/5 last:border-0 hover:bg-black/[0.02] transition-colors ${
+                                                            filter === opt.id ? 'text-black bg-black/[0.02]' : 'text-gray-500'
+                                                        }`}
+                                                    >
+                                                        {opt.label}
+                                                    </button>
+                                                ))}
+                                            </div>
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
                             </div>
+                            {/* Invisible placeholder to keep height consistent since absolute positioning removes it from flow */}
+                            <div className="h-[46px] w-full" />
+                        </div>
 
-                            <div className="flex flex-col md:flex-row gap-6 md:gap-12 items-start">
-                                <div className="md:w-30 shrink-0 space-y-2">
-                                    <div className="flex items-center gap-3">
-                                        <span className="text-2xl font-bold text-white tracking-tighter">{entry.version}</span>
-                                        {i === 0 && filter === 'all' && (
-                                            <span className="text-[9px] bg-white/10 border border-white/10 px-2 py-0.5 rounded text-white/60 uppercase tracking-wider">Latest</span>
+                        {/* Desktop Pill Navigation */}
+                        <div className="hidden md:inline-flex gap-2 p-1.5 bg-black/[0.02] border border-black/10 rounded-full shadow-sm">
+                            {filterOptions.map((btn) => {
+                                const isActive = filter === btn.id;
+                                return (
+                                    <button
+                                        key={btn.id}
+                                        onClick={() => setFilter(btn.id)}
+                                        className={`relative px-6 py-2.5 text-[10px] font-bold uppercase tracking-widest rounded-full transition-colors duration-300 ${
+                                            isActive ? 'text-white' : 'text-gray-500 hover:text-black'
+                                        }`}
+                                    >
+                                        {isActive && (
+                                            <motion.div
+                                                layoutId="activeFilterChangelog"
+                                                className="absolute inset-0 bg-black rounded-full shadow-sm"
+                                                transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                                                style={{ zIndex: 0 }}
+                                            />
                                         )}
-                                    </div>
-                                    <div className="text-[10px] text-white/30 font-mono uppercase tracking-widest">{entry.date}</div>
+                                        <span className="relative z-10">{btn.label}</span>
+                                    </button>
+                                );
+                            })}
+                        </div>
 
-                                    <div className="inline-flex items-center gap-2 text-[10px] font-mono text-white/20 bg-white/[0.02] px-2 py-1 border border-white/5 rounded cursor-pointer hover:text-white/60 hover:border-white/20 transition-all group/hash">
-                                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M16 22.027v-6.027c0-2.227-1.5-3.027-3-3.027c3.5 0 6-2.5 6-5.5c0-4.5-4-5-6-5c-2 0-6 .5-6 5c0 3 2.5 5.5 6 5.5c-1.5 0-3 .8-3 3.027v6.027"/></svg>
-                                        {entry.hash}
+                    </div>
+                </section>
+
+                {/* --- CHANGELOG GRID SECTIONS --- */}
+                <div className="w-full mb-32">
+                    {filteredData.map((entry, index) => (
+                        <section key={entry.hash} className={`w-full relative z-20 ${index !== filteredData.length - 1 ? 'border-b border-black/10' : ''}`} style={{ clipPath: 'inset(0)' }}>
+                            <div className="grid grid-cols-1 lg:grid-cols-10 divide-y lg:divide-y-0 lg:divide-x divide-black/10 max-w-[1600px] mx-auto px-0 md:px-12 lg:px-24">
+
+                                {/* LINKE SPALTE: Meta Info (4 von 10 Spalten) */}
+                                <div className="lg:col-span-4 p-6 md:p-8 lg:p-12 flex flex-col bg-black/[0.01] relative z-0 before:absolute before:inset-y-0 before:right-0 before:w-[100vw] before:bg-black/[0.01] before:-z-10">
+
+                                    <div className="flex flex-col gap-4 max-w-xs">
+                                        <div className="flex flex-wrap items-center gap-3">
+                                            <h3 className="text-3xl font-medium text-black tracking-tight">
+                                                {entry.version}
+                                            </h3>
+                                            {index === 0 && filter === 'all' && (
+                                                <span className="inline-block text-[9px] bg-black px-2 py-0.5 rounded-sm text-white uppercase tracking-wider font-bold shadow-sm mt-1.5">
+                                                    Latest
+                                                </span>
+                                            )}
+                                        </div>
+
+                                        <div className="text-[11px] text-gray-500 font-mono uppercase tracking-widest">
+                                            {entry.date}
+                                        </div>
+
+                                        <a href={`https://github.com/pytja/core/commit/${entry.hash}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-[10px] font-mono text-gray-600 bg-white px-3 py-1.5 border border-black/10 rounded-md cursor-pointer hover:text-black hover:bg-black/[0.02] hover:border-black/20 transition-all w-fit group">
+                                            {/* HIER GEÄNDERT: Das offizielle GitHub Logo */}
+                                            <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
+                                                <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+                                            </svg>
+                                            {entry.hash}
+                                        </a>
                                     </div>
+
                                 </div>
 
-                                <div className="flex-1 space-y-6 bg-[#0A0A0A] p-6 border border-white/5 rounded-sm hover:border-white/10 transition-colors w-full">
-                                    <div>
-                                        <div className="text-[9px] uppercase tracking-[0.2em] font-bold mb-2 text-white/50">
-                                            [{entry.type}]
-                                        </div>
-                                        <h3 className="text-xl font-bold text-white uppercase tracking-tight">{entry.title}</h3>
-                                        <p className="text-sm text-[#888] mt-2 font-light leading-relaxed">{entry.desc}</p>
+                                {/* RECHTE SPALTE: Content (6 von 10 Spalten) */}
+                                <div className="lg:col-span-6 p-6 md:p-8 lg:p-12 flex flex-col bg-white">
+
+                                    <div className="flex items-center gap-3 mb-4">
+                                        <span className={`text-[9px] uppercase tracking-[0.2em] font-bold px-2.5 py-1 rounded-sm border ${
+                                            entry.type === 'security' ? 'text-orange-600 bg-orange-50 border-orange-100' :
+                                                entry.type === 'feature' ? 'text-blue-600 bg-blue-50 border-blue-100' :
+                                                    entry.type === 'fix' ? 'text-gray-600 bg-gray-100 border-gray-200' :
+                                                        'text-emerald-600 bg-emerald-50 border-emerald-100' // Core
+                                        }`}>
+                                            Type: {entry.type}
+                                        </span>
                                     </div>
 
-                                    <ul className="space-y-3 border-t border-white/5 pt-4">
+                                    <h3 className="text-xl md:text-2xl font-medium text-black tracking-tight mb-4">
+                                        {entry.title}
+                                    </h3>
+
+                                    <p className="text-[14px] md:text-[15px] text-gray-500 font-light leading-relaxed mb-8 max-w-2xl">
+                                        {entry.desc}
+                                    </p>
+
+                                    <ul className="space-y-4 border-t border-black/10 pt-8 max-w-2xl">
                                         {entry.changes.map((change, idx) => (
-                                            <li key={idx} className="flex items-start gap-3 text-xs text-white/60 font-mono">
-                                                {/* font-bold macht ihn dicker, -translate-y-[1px] schiebt ihn leicht hoch */}
-                                                <span className="text-white/30 font-bold select-none -translate-y-[1px]">—</span>
-                                                {change}
+                                            <li key={idx} className="flex items-start gap-4 text-[13px] md:text-[14px] text-gray-600 font-light">
+                                                <span className="text-black/30 font-mono mt-0.5 select-none">—</span>
+                                                <span className="leading-relaxed">{change}</span>
                                             </li>
                                         ))}
                                     </ul>
+
+                                </div>
+                            </div>
+                        </section>
+                    ))}
+
+                    {/* --- END OF STREAM INDICATOR --- */}
+                    {/* HIER GEÄNDERT: border-y statt border-t */}
+                    <section className="w-full border-y border-black/10 relative z-20" style={{ clipPath: 'inset(0)' }}>
+                        <div className="grid grid-cols-1 lg:grid-cols-10 divide-y lg:divide-y-0 lg:divide-x divide-black/10 max-w-[1600px] mx-auto px-0 md:px-12 lg:px-24">
+                            <div className="lg:col-span-4 p-6 md:p-8 lg:p-12 flex flex-col bg-black/[0.01] relative z-0 before:absolute before:inset-y-0 before:right-0 before:w-[100vw] before:bg-black/[0.01] before:-z-10">
+                                <div className="text-[10px] text-gray-400 uppercase tracking-[0.2em] font-mono font-bold">
+                                    // End of Ledger
+                                </div>
+                            </div>
+                            <div className="lg:col-span-6 p-6 md:p-8 lg:p-12 flex items-center bg-white">
+                                <div className="text-[10px] text-gray-400 uppercase tracking-[0.2em] font-mono">
+                                    Initial Repository Commit Reached
                                 </div>
                             </div>
                         </div>
-                    ))}
-                </div>
+                    </section>
 
-                <div className="ml-[10px] md:ml-[-6px] pl-8 md:pl-16 pt-16 pb-8 border-l border-white/10 border-dashed relative z-10">
-                    <div className="text-[10px] text-white/20 uppercase tracking-[0.2em]">End of Stream // Initial Commit</div>
                 </div>
-
             </main>
         </div>
     );

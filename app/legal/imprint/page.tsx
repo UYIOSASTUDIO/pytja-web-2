@@ -1,51 +1,46 @@
 export default function ImprintPage() {
     return (
-        <div className="space-y-12">
-            <div>
-                <h1 className="text-4xl font-black uppercase tracking-tighter mb-2">Imprint</h1>
-                <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest">Information according to § 5 TMG</p>
-            </div>
+        <div className="space-y-12 animate-in fade-in duration-700">
 
-            <div className="space-y-8 text-sm text-white/70 font-light leading-relaxed">
-                {/* ADRESSE */}
-                <div className="p-6 border border-white/10 bg-[#0A0A0A]">
-                    <h3 className="text-xs font-bold uppercase tracking-widest text-white mb-4">Operator</h3>
-                    <p>
-                        <strong>Elias Schmolke</strong><br />
-                        Zum Wilden Graben 26<br />
-                        99425 Weimar<br />
-                        Germany
+            <header className="space-y-4 border-b border-black/10 pb-8">
+                <h1 className="text-4xl md:text-5xl font-medium uppercase tracking-tighter text-black">Imprint</h1>
+                <p className="text-[10px] font-mono text-gray-400 uppercase tracking-[0.2em]">Legal disclosure // § 5 TMG</p>
+            </header>
+
+            <div className="grid md:grid-cols-2 gap-6">
+                {/* Operator Node */}
+                <div className="relative p-6 border border-black/5 bg-white rounded-xl group transition-all">
+
+                    <h3 className="text-[10px] font-mono font-bold uppercase tracking-widest text-gray-400 mb-6 flex items-center gap-2">
+                        <div className="relative flex items-center justify-center w-2 h-2 shrink-0">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
+                        </div>
+                        Operator
+                    </h3>
+                    <p className="text-sm text-gray-600 font-light leading-relaxed">
+                        <span className="text-black font-bold tracking-tight">Elias Schmolke</span><br />
+                        Architect & Lead Developer
                     </p>
                 </div>
 
-                {/* KONTAKT */}
-                <div className="p-6 border border-white/10 bg-[#0A0A0A]">
-                    <h3 className="text-xs font-bold uppercase tracking-widest text-white mb-4">Contact</h3>
-                    <p>
-                        Email: <a href="mailto:contact@pytja.com" className="text-white hover:underline">contact@pytja.com</a><br />
-                        Portfolio: <a href="https://eliasschmolke.com" className="text-white hover:underline">eliasschmolke.com</a>
-                    </p>
-                </div>
+                {/* Contact Node */}
+                <div className="relative p-6 border border-black/5 bg-white rounded-xl group transition-all">
 
-                {/* DISCLAIMER */}
-                <div className="mb-8">
-                    <h2 className="text-xl font-bold uppercase tracking-tight text-white mb-4">Online Dispute Resolution</h2>
-                    <p className="text-sm text-gray-400 leading-relaxed">
-                        The European Commission provides a platform for online dispute resolution (OS): {' '}
-                        <a
-                            href="https://consumer-redress.ec.europa.eu/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-white hover:text-blue-400 underline transition-colors"
-                        >
-                            https://consumer-redress.ec.europa.eu/
-                        </a>
-                    </p>
-                    <p className="text-sm text-gray-400 leading-relaxed">
-                        We are not willing or obliged to participate in dispute resolution proceedings before a consumer arbitration board.
-                    </p>
+                    <h3 className="text-[10px] font-mono font-bold uppercase tracking-widest text-gray-400 mb-6 flex items-center gap-2">
+                        <div className="relative flex items-center justify-center w-2 h-2 shrink-0">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
+                        </div>
+                        Operator
+                    </h3>
+                    <div className="text-sm text-gray-600 font-light leading-relaxed space-y-1">
+                        <p>Mail: <a href="mailto:contact@pytja.com" className="text-black font-medium hover:underline decoration-cyan-500/50">contact@pytja.com</a></p>
+                        <p>Web: <a href="https://eliasschmolke.com" className="text-black font-medium hover:underline decoration-cyan-500/50">eliasschmolke.com</a></p>
+                    </div>
                 </div>
             </div>
+
         </div>
     );
 }
