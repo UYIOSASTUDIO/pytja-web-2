@@ -97,119 +97,123 @@ export default function ModulesPage() {
                 </section>
 
                 {/* ========================================================= */}
-                {/* 2. THE USP VISUAL HOOK & FEATURES                         */}
+                {/* 2. THE USP VISUAL HOOK & FEATURES (Asymmetric Grid)         */}
                 {/* ========================================================= */}
-                <section className="w-full border-t border-black/10 relative z-20">
+                <section className="w-full border-t border-black/10 relative z-20 bg-white">
 
-                    {/* Features Row (3-Col Grid) */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-black/10 max-w-[1600px] mx-auto px-0 md:px-12 lg:px-24">
+                    {/* ROW 1: CORE ARCHITECTURE (2-Col Grid, Heavy Emphasis) */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-black/10 max-w-[1600px] mx-auto px-0 md:px-12 lg:px-24">
 
-                        <div className="p-6 md:p-8 lg:p-12 flex flex-col justify-between min-h-[220px]">
-                            <div className="mb-6">
-                                {/* HIER GEÄNDERT: Gegenläufige Pfeile (Interconnected) */}
-                                <svg className="w-5 h-5 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
-                                </svg>
+                        {/* 1. Isolation (Primary Feature - WASIX) */}
+                        <div className="px-8 lg:px-12 py-12 lg:py-16 flex flex-col justify-between min-h-[320px]">
+                            <div className="mb-8">
+                                {/* NEUER ICON-RAHMEN (Gradient & Soft Shadow) */}
+                                <div className="w-12 h-12 flex items-center justify-center bg-gradient-to-br from-black/[0.03] to-transparent border border-black/10 rounded-lg shadow-[0_2px_10px_rgba(0,0,0,0.02)]">
+                                    <svg className="w-5 h-5 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+                                    </svg>
+                                </div>
                             </div>
                             <div>
-                                <h3 className="text-[16px] font-medium tracking-tight text-black mb-2">
+                                <h3 className="text-[20px] lg:text-[24px] font-medium tracking-tight text-black mb-4">
+                                    Strict WASIX Isolation
+                                </h3>
+                                <p className="text-[15px] lg:text-[16px] text-gray-500 leading-relaxed font-light max-w-lg">
+                                    Upgraded to the cutting-edge WASIX standard. Each node operates in a ruthless sandbox with full POSIX compatibility and multithreading. Zero unauthorized host access, ensuring a compromised plugin cannot breach the kernel.
+                                </p>
+                            </div>
+                        </div>
+
+                        {/* 2. Pipelines (Primary Feature) */}
+                        <div className="px-8 lg:px-12 py-12 lg:py-16 flex flex-col justify-between min-h-[320px]">
+                            <div className="mb-8">
+                                {/* NEUER ICON-RAHMEN (Gradient & Soft Shadow) */}
+                                <div className="w-12 h-12 flex items-center justify-center bg-gradient-to-br from-black/[0.03] to-transparent border border-black/10 rounded-lg shadow-[0_2px_10px_rgba(0,0,0,0.02)]">
+                                    <svg className="w-5 h-5 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div>
+                                <h3 className="text-[20px] lg:text-[24px] font-medium tracking-tight text-black mb-4">
                                     Interconnected Pipelines
                                 </h3>
-                                <p className="text-[14px] text-gray-500 leading-relaxed font-light">
-                                    Plugins can securely pass data to each other. Extract raw files, format them via JSON parsers, and stream the result directly into ML models.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div className="p-6 md:p-8 lg:p-12 flex flex-col justify-between min-h-[220px]">
-                            <div className="mb-6">
-                                {/* Beibehalten: Schloss (Isolation) */}
-                                <svg className="w-5 h-5 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 className="text-[16px] font-medium tracking-tight text-black mb-2">
-                                    Strict WASI Isolation
-                                </h3>
-                                <p className="text-[14px] text-gray-500 leading-relaxed font-light">
-                                    Each node operates in a ruthless sandbox. Zero host network access, zero disk access. Data is passed strictly via memory-safe channels.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div className="p-6 md:p-8 lg:p-12 flex flex-col justify-between min-h-[220px]">
-                            <div className="mb-6">
-                                {/* Beibehalten: Zeit/Reset (Ephemeral) */}
-                                <svg className="w-5 h-5 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 className="text-[16px] font-medium tracking-tight text-black mb-2">
-                                    Ephemeral Execution
-                                </h3>
-                                <p className="text-[14px] text-gray-500 leading-relaxed font-light">
-                                    The Wasmer runtime engine is instantly purged upon plugin exit. No hidden background processes, preventing memory leaks entirely.
+                                <p className="text-[15px] lg:text-[16px] text-gray-500 leading-relaxed font-light max-w-lg">
+                                    Plugins securely pass data to each other strictly in-memory. Extract raw files, format them via JSON parsers, and stream the result directly into machine learning models without ever leaving the highly optimized runtime environment.
                                 </p>
                             </div>
                         </div>
 
                     </div>
 
-                    {/* Features Row 2 (3-Col Grid) - Nahtlos angefügt */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-black/10 max-w-[1600px] mx-auto px-0 md:px-12 lg:px-24 border-t border-black/10">
+                    {/* ROW 2: TECHNICAL DETAILS (4-Col Grid, Secondary Features) */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:gap-y-0 sm:divide-x divide-black/10 max-w-[1600px] mx-auto px-0 md:px-12 lg:px-24 border-t border-black/10">
 
-                        {/* 4. Controlled Outbound Networking */}
-                        <div className="p-6 md:p-8 lg:p-12 flex flex-col justify-between min-h-[220px]">
-                            <div className="mb-6">
-                                {/* HIER GEÄNDERT: Schild (Security/Policy Control) */}
-                                <svg className="w-5 h-5 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+                        {/* 3. Ephemeral */}
+                        {/* HIER GEÄNDERT: pt-8 pb-5 und min-h-[180px] reduzieren den Totraum unten extrem */}
+                        <div className="px-8 lg:px-12 pt-8 pb-5 lg:pt-10 lg:pb-6 flex flex-col min-h-[180px] border-b sm:border-b-0 border-black/10">
+                            <div className="mb-5 text-black/40">
+                                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 className="text-[13px] font-bold uppercase tracking-wide text-black mb-2">
+                                    Ephemeral State
+                                </h3>
+                                <p className="text-[13px] text-gray-500 leading-relaxed font-light">
+                                    Runtime engine is instantly purged upon exit. No background artifacts, preventing memory leaks entirely.
+                                </p>
+                            </div>
+                        </div>
+
+                        {/* 4. Egress */}
+                        <div className="px-8 lg:px-12 pt-8 pb-5 lg:pt-10 lg:pb-6 flex flex-col min-h-[180px] border-b sm:border-b-0 border-black/10">
+                            <div className="mb-5 text-black/40">
+                                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
                             </div>
                             <div>
-                                <h3 className="text-[16px] font-medium tracking-tight text-black mb-2">
-                                    Egress Policy Control
+                                <h3 className="text-[13px] font-bold uppercase tracking-wide text-black mb-2">
+                                    Egress Policies
                                 </h3>
-                                <p className="text-[14px] text-gray-500 leading-relaxed font-light">
-                                    Securely fetch external data. Plugins can be granted granular network access to specific domains via encrypted proxy-tunnels, maintaining full auditability.
+                                <p className="text-[13px] text-gray-500 leading-relaxed font-light">
+                                    Granular network access via encrypted proxy-tunnels, maintaining full kernel-level auditability.
                                 </p>
                             </div>
                         </div>
 
-                        {/* 5. Headless or Graphical Interfaces */}
-                        <div className="p-6 md:p-8 lg:p-12 flex flex-col justify-between min-h-[220px]">
-                            <div className="mb-6">
-                                {/* Beibehalten: Devices/UI */}
-                                <svg className="w-5 h-5 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+                        {/* 5. Hybrid UI */}
+                        <div className="px-8 lg:px-12 pt-8 pb-5 lg:pt-10 lg:pb-6 flex flex-col min-h-[180px] border-b lg:border-b-0 border-black/10">
+                            <div className="mb-5 text-black/40">
+                                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" />
                                 </svg>
                             </div>
                             <div>
-                                <h3 className="text-[16px] font-medium tracking-tight text-black mb-2">
-                                    Hybrid UI Support
+                                <h3 className="text-[13px] font-bold uppercase tracking-wide text-black mb-2">
+                                    Hybrid UI
                                 </h3>
-                                <p className="text-[14px] text-gray-500 leading-relaxed font-light">
-                                    Render rich dashboards directly in the browser or deploy as standalone OS windows. Leverage React or Electron to build high-performance plugin frontends.
+                                <p className="text-[13px] text-gray-500 leading-relaxed font-light">
+                                    Deploy rich browser dashboards or standalone OS windows leveraging frameworks like React or Electron.
                                 </p>
                             </div>
                         </div>
 
-                        {/* 6. Background Persistence */}
-                        <div className="p-6 md:p-8 lg:p-12 flex flex-col justify-between min-h-[220px]">
-                            <div className="mb-6">
-                                {/* Beibehalten: Server/Stack (Daemonized) */}
-                                <svg className="w-5 h-5 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+                        {/* 6. Daemonized */}
+                        <div className="px-8 lg:px-12 pt-8 pb-5 lg:pt-10 lg:pb-6 flex flex-col min-h-[180px]">
+                            <div className="mb-5 text-black/40">
+                                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
                                 </svg>
                             </div>
                             <div>
-                                <h3 className="text-[16px] font-medium tracking-tight text-black mb-2">
-                                    Daemonized Persistence
+                                <h3 className="text-[13px] font-bold uppercase tracking-wide text-black mb-2">
+                                    Daemon Threads
                                 </h3>
-                                <p className="text-[14px] text-gray-500 leading-relaxed font-light">
-                                    Configure plugins as reliable background services. Automatically spin up worker threads at kernel startup to handle long-running polling or monitoring tasks.
+                                <p className="text-[13px] text-gray-500 leading-relaxed font-light">
+                                    Spin up isolated worker threads at kernel startup to handle long-running background polling tasks.
                                 </p>
                             </div>
                         </div>
@@ -283,13 +287,14 @@ export default function ModulesPage() {
                             </div>
                         </div>
 
-                        {/* RIGHT COLUMN: The Plugin Grid */}
+                        {/* RIGHT COLUMN: The Plugin Grid (Now Full-Width List View) */}
                         <div className="lg:col-span-6 p-6 md:p-8 lg:p-12 bg-white">
-                            <div className="grid sm:grid-cols-2 gap-6">
+                            {/* HIER GEÄNDERT: grid sm:grid-cols-2 ersetzt durch flex flex-col */}
+                            <div className="flex flex-col gap-6">
                                 {plugins.map((plugin) => (
                                     <div
                                         key={plugin.id}
-                                        className="group bg-white border border-black/10 p-6 md:p-8 rounded-xl hover:shadow-lg transition-all duration-300 flex flex-col relative overflow-hidden"
+                                        className="group bg-white border border-black/10 p-6 md:p-8 lg:p-10 rounded-xl hover:shadow-[0_8px_30px_rgb(0,0,0,0.06)] transition-all duration-300 flex flex-col relative overflow-hidden"
                                     >
                                         {/* Hover Gradient Effect */}
                                         <div className="absolute inset-0 bg-gradient-to-br from-black/[0.01] to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
@@ -297,24 +302,25 @@ export default function ModulesPage() {
                                         {/* Card Header */}
                                         <div className="flex justify-between items-start mb-6 gap-4 relative z-10">
                                             <div className="space-y-2 flex-1 min-w-0">
-                                                <h4 className="text-[16px] font-bold text-black font-mono tracking-tight truncate">
+                                                <h4 className="text-[18px] font-bold text-black font-mono tracking-tight truncate">
                                                     {plugin.name}
                                                 </h4>
-                                                <p className="text-[10px] text-gray-400 font-mono uppercase tracking-widest">
+                                                <p className="text-[11px] text-gray-400 font-mono uppercase tracking-widest">
                                                     {plugin.author} • {plugin.version}
                                                 </p>
                                             </div>
-                                            <span className={`text-[9px] px-2 py-1 rounded-sm border uppercase tracking-widest shrink-0 font-bold ${
+                                            <span className={`text-[10px] px-2.5 py-1.5 rounded-sm border uppercase tracking-widest shrink-0 font-bold ${
                                                 plugin.type === 'driver' ? 'border-blue-500/20 text-blue-600 bg-blue-500/5' :
                                                     plugin.type === 'security' ? 'border-red-500/20 text-red-600 bg-red-500/5' :
                                                         'border-black/10 text-gray-500 bg-black/[0.02]'
                                             }`}>
-                                {plugin.type}
-                            </span>
+                        {plugin.type}
+                    </span>
                                         </div>
 
                                         {/* Description */}
-                                        <p className="text-[14px] text-gray-500 leading-relaxed font-light mb-8 flex-1 relative z-10">
+                                        {/* HIER GEÄNDERT: max-w-3xl hinzugefügt für bessere Lesbarkeit auf großen Bildschirmen */}
+                                        <p className="text-[15px] text-gray-500 leading-relaxed font-light mb-8 flex-1 relative z-10 max-w-3xl">
                                             {plugin.desc}
                                         </p>
 
@@ -325,7 +331,7 @@ export default function ModulesPage() {
                                             </div>
                                             <button className="flex items-center gap-2 text-black hover:text-gray-500 transition-colors font-bold group/btn hover:cursor-pointer">
                                                 Install
-                                                <svg className="w-2.5 h-2.5 transform transition-transform group-hover/btn:translate-y-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                                                <svg className="w-3 h-3 transform transition-transform group-hover/btn:translate-y-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                                                     <path strokeLinecap="round" strokeLinejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
                                                 </svg>
                                             </button>

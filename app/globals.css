@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@import "tailwindcss";
+
 @theme {
     --color-accent: #F46623;
     --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular;
@@ -10,9 +12,21 @@
         --background: #0d0d0d;
         --foreground: #e5e5e5;
     }
+
+    /* ======================================================== */
+    /* iOS OVERSCROLL & RUBBER-BANDING FIX                      */
+    /* ======================================================== */
+    html {
+        background-color: #ffffff;
+        background-image: linear-gradient(to bottom, #ffffff 0%, #ffffff 50%, #0a0a0a 50%, #0a0a0a 100%);
+        height: 100%;
+    }
+
     body {
-        background-color: var(--background);
+        /* Body muss transparent sein, damit das HTML-Gradient an den Rändern durchscheint */
+        background-color: transparent;
         color: var(--foreground);
+        min-height: 100%;
         overflow-x: clip;
     }
 }

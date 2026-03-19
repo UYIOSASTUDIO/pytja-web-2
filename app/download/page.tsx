@@ -11,15 +11,16 @@ export default function DownloadPage() {
         setMounted(true);
     }, []);
 
-    const copyToClipboard = (text: string, type: 'curl' | 'docker') => {
-        navigator.clipboard.writeText(text);
-        if (type === 'curl') {
-            setCopiedCurl(true);
-            setTimeout(() => setCopiedCurl(false), 2000);
-        } else {
-            setCopiedDocker(true);
-            setTimeout(() => setCopiedDocker(false), 2000);
-        }
+    const handleCopyCurl = () => {
+        navigator.clipboard.writeText('curl -sSL pytja.com/install | bash');
+        setCopiedCurl(true);
+        setTimeout(() => setCopiedCurl(false), 2000);
+    };
+
+    const handleCopyDocker = () => {
+        navigator.clipboard.writeText('docker pull pytja/core:latest');
+        setCopiedDocker(true);
+        setTimeout(() => setCopiedDocker(false), 2000);
     };
 
     if (!mounted) return null;
@@ -189,22 +190,30 @@ export default function DownloadPage() {
                                         </div>
                                     </div>
 
-                                    {/* Code Block with integrated Copy */}
+                                    {/* Code Block with integrated Copy (Unix Shell) */}
                                     <div className="w-full bg-black/[0.03] border border-black/10 rounded-md text-[12px] font-mono text-black relative flex items-center shadow-inner overflow-hidden">
-                                        <code className="flex-1 p-3.5 pr-20 truncate">
+                                        <code className="flex-1 p-3.5 pr-12 truncate">
                                             curl -sSL pytja.com/install | bash
                                         </code>
-                                        {copiedCurl && (
-                                            <span className="absolute right-12 top-1/2 -translate-y-1/2 text-[10px] font-bold text-emerald-600 font-sans tracking-wide">
-                                                Copied!
-                                            </span>
-                                        )}
+
                                         <button
-                                            onClick={() => copyToClipboard('curl -sSL pytja.com/install | bash', 'curl')}
+                                            onClick={handleCopyCurl}
                                             className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-md text-black/40 hover:text-black hover:bg-black/5 transition-colors cursor-pointer"
                                             aria-label="Copy code"
+                                            title="Copy to clipboard"
                                         >
-                                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                                            {copiedCurl ? (
+                                                // Checkmark Icon (Emerald Green)
+                                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="text-emerald-600">
+                                                    <polyline points="20 6 9 17 4 12" />
+                                                </svg>
+                                            ) : (
+                                                // Copy/Square Icon
+                                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                                </svg>
+                                            )}
                                         </button>
                                     </div>
                                 </div>
@@ -228,22 +237,30 @@ export default function DownloadPage() {
                                         </div>
                                     </div>
 
-                                    {/* Code Block with integrated Copy */}
+                                    {/* Code Block with integrated Copy (Docker) */}
                                     <div className="w-full bg-black/[0.03] border border-black/10 rounded-md text-[12px] font-mono text-black relative flex items-center shadow-inner overflow-hidden">
-                                        <code className="flex-1 p-3.5 pr-20 truncate">
+                                        <code className="flex-1 p-3.5 pr-12 truncate">
                                             docker pull pytja/core:latest
                                         </code>
-                                        {copiedDocker && (
-                                            <span className="absolute right-12 top-1/2 -translate-y-1/2 text-[10px] font-bold text-emerald-600 font-sans tracking-wide">
-                                                Copied!
-                                            </span>
-                                        )}
+
                                         <button
-                                            onClick={() => copyToClipboard('docker pull pytja/core:latest', 'docker')}
+                                            onClick={handleCopyDocker}
                                             className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-md text-black/40 hover:text-black hover:bg-black/5 transition-colors cursor-pointer"
                                             aria-label="Copy code"
+                                            title="Copy to clipboard"
                                         >
-                                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                                            {copiedDocker ? (
+                                                // Checkmark Icon (Emerald Green)
+                                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="text-emerald-600">
+                                                    <polyline points="20 6 9 17 4 12" />
+                                                </svg>
+                                            ) : (
+                                                // Copy/Square Icon
+                                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                                </svg>
+                                            )}
                                         </button>
                                     </div>
                                 </div>

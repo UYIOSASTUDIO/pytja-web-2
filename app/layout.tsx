@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import ClientLayout from "./components/layout/ClientLayout";
@@ -13,19 +13,38 @@ const fontMono = JetBrains_Mono({
     variable: "--font-geist-mono",
 });
 
+// --- VIEWPORT KONFIGURATION ---
+export const viewport: Viewport = {
+    themeColor: "#ffffff",
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 1,
+    viewportFit: "cover",
+};
+
+// --- METADATA KONFIGURATION ---
 export const metadata: Metadata = {
-    title: "Pytja - Database Exploration",
-    description: "Secure, in-memory database client built with Rust.",
+    title: "Pytja | Enterprise Engine",
+    description: "Zero-trace native speed. Unify databases & extend via WASM.",
+    appleWebApp: {
+        capable: true,
+        title: "Pytja",
+        statusBarStyle: "black-translucent",
+    },
 };
 
 export default function RootLayout({
                                        children,
                                    }: {
-    children: React.ReactNode
+    children: React.ReactNode;
 }) {
     return (
         <html lang="en" className={`${fontSans.variable} ${fontMono.variable}`}>
-        <body className="bg-[#0D0D0D] text-white selection:bg-white selection:text-black antialiased">
+        {/* WICHTIG: Keine statische Hintergrundfarbe (bg-[...]) auf dem Body!
+              Die Hintergrundlogik wird komplett über die globals.css (iOS-Fix)
+              und die jeweiligen Seiten-Wrapper gesteuert.
+            */}
+        <body className="text-white selection:bg-white selection:text-black antialiased">
         <ClientLayout>
             {children}
         </ClientLayout>
