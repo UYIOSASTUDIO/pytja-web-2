@@ -32,6 +32,15 @@ export const metadata: Metadata = {
         description: "Zero-trace native speed. Unify databases & extend via WASM.",
         url: "https://pytja.com",
         siteName: "Pytja",
+        // HIER NEU: Der harte Link zum Bild im public-Ordner
+        images: [
+            {
+                url: "/opengraph-image.png",
+                width: 1200,
+                height: 630,
+                alt: "Pytja | Unified Data Layer",
+            }
+        ],
         locale: "en_US",
         type: "website",
     },
@@ -39,6 +48,8 @@ export const metadata: Metadata = {
         card: "summary_large_image",
         title: "Pytja | Unified Data Layer",
         description: "Zero-trace native speed. Unify databases & extend via WASM.",
+        // HIER NEU: Auch Twitter zwingen wir auf das Bild
+        images: ["/opengraph-image.png"],
         creator: "@pytja",
     },
     appleWebApp: {
