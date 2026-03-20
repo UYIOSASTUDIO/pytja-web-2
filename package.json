@@ -11,7 +11,7 @@
   "dependencies": {
     "@types/react-syntax-highlighter": "^15.5.13",
     "framer-motion": "^12.34.3",
-    "next": "15.1.0",
+    "next": "^15.5.14",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-syntax-highlighter": "^16.1.0"
@@ -22,7 +22,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^8.57.0",
-    "eslint-config-next": "15.1.0",
+    "eslint-config-next": "^15.5.14",
     "tailwindcss": "^4.0.0",
     "typescript": "^5"
   }
