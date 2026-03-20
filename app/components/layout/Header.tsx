@@ -128,7 +128,7 @@ export default function Header() {
     const textActive = isDarkMode ? "text-white" : "text-black";
     const textInactive = isDarkMode ? "text-gray-400 hover:text-white" : "text-gray-500 hover:text-black";
 
-    const blockStyle = `${baseBlockStyle} border ${themeClasses} px-6`;
+    const blockStyle = `${baseBlockStyle} border ${themeClasses}`;
 
     const mobileMenu = (
         <div
@@ -211,18 +211,19 @@ export default function Header() {
                     <div className="flex items-center gap-2 pointer-events-auto">
                         <Link
                             href="/"
-                            className={`${blockStyle} px-6 transition-colors duration-500 cursor-pointer flex items-center justify-center`}
+                            className={`${blockStyle} px-4 md:px-6 transition-colors duration-500 cursor-pointer flex items-center justify-center`}
                         >
                             <img
                                 src="/SVG/pytja_logo_text.svg"
                                 alt="Pytja Logo"
-                                className={`h-4 md:h-5 w-auto select-none pointer-events-none transition-all duration-500 ease-in-out ${
+                                className={`h-5 md:h-5 w-auto select-none pointer-events-none transition-all duration-500 ease-in-out ${
                                     isDarkMode ? 'invert brightness-100' : 'invert-0'
                                 }`}
                             />
                         </Link>
 
-                        <nav className={`hidden lg:flex ${blockStyle} gap-8 text-[10px] tracking-[0.3em] font-bold uppercase`}>
+                        {/* HIER GEÄNDERT: px-6 wieder manuell hinzugefügt, da wir es oben aus dem blockStyle entfernt haben */}
+                        <nav className={`hidden lg:flex ${blockStyle} px-6 gap-8 text-[10px] tracking-[0.3em] font-bold uppercase`}>
                             {navLinks.map((link) => {
                                 const isActive = pathname.startsWith(link.href);
                                 return (
@@ -239,7 +240,7 @@ export default function Header() {
                     </div>
 
                     <div className="flex items-center gap-2 pointer-events-auto">
-                        <div className={`hidden md:flex ${blockStyle} gap-6 px-4`}>
+                        <div className={`hidden md:flex ${blockStyle} px-4 md:px-6 gap-6`}>
                             <Link
                                 href="/contact"
                                 className={`text-[10px] font-bold transition-colors duration-500 uppercase tracking-widest ${textInactive}`}
