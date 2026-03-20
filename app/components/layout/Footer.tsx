@@ -44,7 +44,7 @@ export default function Footer() {
             </div>
 
             {/* --- ACTUAL FOOTER --- */}
-            <footer className="w-full bg-[#050505] relative z-10 pb-12 pt-8 md:pt-12">
+            <footer data-theme="dark" className="w-full bg-[#050505] relative z-10 pb-12 pt-8 md:pt-12">
                 <div className="max-w-[1600px] mx-auto px-6 md:px-12 lg:px-36">
 
                     <div className="grid grid-cols-1 lg:grid-cols-10 gap-16 lg:gap-8 mb-24">
