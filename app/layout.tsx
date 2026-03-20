@@ -24,8 +24,23 @@ export const viewport: Viewport = {
 
 // --- METADATA KONFIGURATION ---
 export const metadata: Metadata = {
+    metadataBase: new URL("https://pytja.com"),
     title: "Pytja | Unified Data Layer",
     description: "Zero-trace native speed. Unify databases & extend via WASM.",
+    openGraph: {
+        title: "Pytja | Unified Data Layer",
+        description: "Zero-trace native speed. Unify databases & extend via WASM.",
+        url: "https://pytja.com",
+        siteName: "Pytja",
+        locale: "en_US",
+        type: "website",
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Pytja | Unified Data Layer",
+        description: "Zero-trace native speed. Unify databases & extend via WASM.",
+        creator: "@pytja",
+    },
     appleWebApp: {
         capable: true,
         title: "Pytja",
