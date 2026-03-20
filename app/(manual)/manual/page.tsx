@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, LayoutGroup } from 'framer-motion';
+import Link from 'next/link';
 
 const envContent = `# ==============================================================================
 # PYTJA V1 - ENVIRONMENT CONFIGURATION
@@ -52,58 +53,50 @@ const binarySteps = [
     {
         id: "step1",
         number: "01",
-        title: "Local Datastore (Redis)",
-        desc: "Pytja requires a local Redis server to handle high-speed, sub-millisecond session validation. Ensure this is running before starting the daemon.",
-        commands: [
-            { cmd: "brew install redis && brew services start redis", output: "# macOS (Homebrew)" },
-            { cmd: "sudo apt install redis-server && sudo systemctl start redis", output: "# Linux (Ubuntu/Debian)" },
-            { cmd: "docker run -d -p 6379:6379 redis", output: "# Docker (Universal)" }
-        ]
+        title: "Acquire Core Binaries",
+        desc: "Download the pre-compiled, highly optimized binaries for your specific operating system from our official distribution page and prepare your sovereign workspace.",
+        link: { text: "Go to Download Page", href: "/download" },
     },
     {
         id: "step2",
         number: "02",
-        title: "Acquire Artifacts",
-        desc: "Download the pre-compiled, optimized binaries from the releases page and extract them into a dedicated sovereign workspace.",
-        commands: [{ cmd: "mkdir -p ~/pytja-workspace && cd ~/pytja-workspace" }]
+        title: "Local Datastore (Redis)",
+        desc: "Pytja requires a local Redis cache for high-speed session state management. Ensure the service is provisioned and running for your respective operating system before executing the core binary.",
+        commands: [
+            { cmd: "sudo apt-get install redis-server && sudo systemctl enable --now redis-server", output: "# Linux (Debian/Ubuntu)" },
+            { cmd: "brew install redis && brew services start redis", output: "# macOS (Homebrew)" },
+            { cmd: "docker run --name pytja-redis -p 6379:6379 -d redis", output: "# Windows (via Docker / WSL2)" }
+        ]
     },
     {
         id: "step3",
         number: "03",
         title: "Grant Permissions",
-        desc: "Make the core engine, registrar, and admin tool executable on your Unix-based system.",
-        commands: [{ cmd: "chmod +x pytja pytja_registrar pytja_admin" }]
+        desc: "Authorize the binary for local execution. Unix-based systems require execution flags, macOS requires Gatekeeper clearance, and Windows requires unblocking the downloaded artifact.",
+        commands: [
+            { cmd: "chmod +x pytja-linux", output: "# Linux" },
+            { cmd: "chmod +x pytja-macos && xattr -d com.apple.quarantine pytja-macos", output: "# macOS (Execution & Gatekeeper Bypass)" },
+            { cmd: "Unblock-File -Path .\\pytja-windows.exe", output: "# Windows (PowerShell Security Clearance)" }
+        ]
     },
     {
         id: "step4",
         number: "04",
-        title: "Zero-Trust TLS Setup",
-        desc: "Pytja encrypts all local gRPC communication. You must generate your own Self-Signed TLS certificates. The daemon will auto-detect these files.",
+        title: "Zero-Touch Provisioning",
+        desc: "Execute the binary. The automated bootstrap wizard will instantly bind your network, generate Zero-Trust TLS certificates, initialize the local SQLite database, and prompt you to create your administrative identity.",
         commands: [
-            { cmd: "cp .env.example .env" },
-            { cmd: 'openssl req -x509 -newkey rsa:4096 -keyout server.key -out server.crt -days 365 -nodes -subj "/CN=localhost"' }
+            { cmd: "./pytja-linux   # or ./pytja-macos", output: "[SYSTEM] Generating TLS certificates...\n[SYSTEM] Initializing database...\n> Enter admin username: admin\n> Set Master Password: ***" },
+            { cmd: ".\\pytja-windows.exe", output: "[SYSTEM] Generating TLS certificates...\n[SYSTEM] Initializing database...\n> Enter admin username: admin\n> Set Master Password: ***" }
         ]
     },
     {
         id: "step5",
         number: "05",
-        title: "Identity Generation",
-        desc: "Pytja uses Ed25519 asymmetric key pairs instead of standard passwords. Launch the interactive registrar and follow the prompts. Your AES-256-GCM encrypted identity file (.pytja) will be securely saved.",
-        commands: [{ cmd: "./pytja_registrar", output: "[INFO] Launching interactive setup...\n> Enter username: admin\n> Set Master Password: ***" }]
-    },
-    {
-        id: "step6",
-        number: "06",
-        title: "Launch Engine",
-        desc: "Pytja features a seamless auto-daemon architecture. It automatically forks the server into the background and connects the interactive shell.",
-        commands: [{ cmd: "./pytja", output: "[SYSTEM] Core offline. Forking background daemon...\n[SYSTEM] Connecting to interactive shell..." }]
-    },
-    {
-        id: "step7",
-        number: "07",
-        title: "System Administration",
-        desc: "Once the daemon is running, launch the fully interactive admin dashboard to manage Users, monitor Databases and System health, or strictly configure RBAC policies.",
-        commands: [{ cmd: "./pytja_admin", output: "[SYSTEM] Initializing interactive dashboard...\n> Select module: [Users] [Databases] [RBAC] [System]" }]
+        title: "Operational Handoff",
+        desc: "After completing the identity setup, the backend server seamlessly detaches as a background daemon across all operating systems, automatically transitioning your terminal into the interactive Pytja Shell.",
+        commands: [
+            { cmd: "pytja > mounts", output: "[SYSTEM] Core offline. Forking background daemon...\n[SYSTEM] Connecting to interactive shell..." }
+        ]
     }
 ];
 
@@ -111,12 +104,9 @@ const sourceSteps = [
     {
         id: "step1",
         number: "01",
-        title: "Local Datastore (Redis)",
-        desc: "Pytja requires a local Redis server to handle high-speed, sub-millisecond session validation. Ensure this is running before starting the daemon.",
-        commands: [
-            { cmd: "brew install redis && brew services start redis", output: "# macOS (Homebrew)" },
-            { cmd: "sudo apt install redis-server && sudo systemctl start redis", output: "# Linux (Ubuntu/Debian)" }
-        ]
+        title: "Clone Repository",
+        desc: "For maximum transparency and custom compilation, pull the open-source code directly from our official GitHub repository into your local environment.",
+        link: { text: "View Source on GitHub", href: "https://github.com/pytja/pytja" },
     },
     {
         id: "step2",
@@ -339,14 +329,28 @@ export default function ManualPage() {
                                         <p className="text-[14px] md:text-[15px] text-gray-500 font-light leading-relaxed max-w-2xl">
                                             {step.desc}
                                         </p>
+
+                                        {step.link && (
+                                            <div className="mt-12">
+                                                <Link
+                                                    href={step.link.href}
+                                                    className="group inline-flex items-center gap-2 text-[13px] font-medium text-black transition-all w-fit border-b border-black/20 pb-0.5 hover:text-gray-600 hover:border-gray-600"
+                                                >
+                                                    {step.link.text}
+                                                    <span className="transform transition-transform duration-300 group-hover:translate-x-1">→</span>
+                                                </Link>
+                                            </div>
+                                        )}
                                     </div>
 
-                                    {/* Command Blocks */}
-                                    <div className="w-full max-w-3xl space-y-3 mt-4">
-                                        {step.commands.map((cmd, i) => (
-                                            <CommandBlock key={i} cmd={cmd.cmd} output={cmd.output} />
-                                        ))}
-                                    </div>
+                                    {/* Command Blocks (Sicherer Render-Check) */}
+                                    {step.commands && step.commands.length > 0 && (
+                                        <div className="w-full max-w-3xl space-y-3 mt-4">
+                                            {step.commands.map((cmd, i) => (
+                                                <CommandBlock key={i} cmd={cmd.cmd} output={cmd.output} />
+                                            ))}
+                                        </div>
+                                    )}
                                 </div>
                             ))}
 

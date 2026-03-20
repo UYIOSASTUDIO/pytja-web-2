@@ -1048,14 +1048,14 @@ function ChangelogSlider() {
 
     return (
         <div
-            className="relative w-full h-full flex flex-col justify-center pl-6 md:pl-8 lg:pl-12 pr-0 py-8"
+            className="relative w-full h-full flex flex-col justify-center pl-0 md:pl-0 lg:pl-0 pr-0 py-8"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
             <div
                 ref={scrollContainerRef}
                 onScroll={handleScroll}
-                className="flex gap-6 overflow-x-auto hide-scrollbar w-full items-center pb-8 pt-4"
+                className="flex gap-6 overflow-x-auto hide-scrollbar w-full items-center pl-6 md:pl-8 lg:pl-12 pb-8 pt-4"
                 style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             >
                 {recentUpdates.map((update, i) => {
