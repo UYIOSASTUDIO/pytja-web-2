@@ -4,16 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb564e1f-a707-4140-aab3-f886758e6606" name="Changes" comment="Commit 12">
+    <list default="true" id="bb564e1f-a707-4140-aab3-f886758e6606" name="Changes" comment="Commit 13">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/about/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/about/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/download/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/download/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/error.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/error.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/globals.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/loading.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/loading.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/modules/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/modules/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/not-found.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/not-found.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,7 +125,8 @@
       <workItem from="1773576307012" duration="5595000" />
       <workItem from="1773658695490" duration="8295000" />
       <workItem from="1773734081261" duration="13952000" />
-      <workItem from="1773907433252" duration="13974000" />
+      <workItem from="1773907433252" duration="15372000" />
+      <workItem from="1774005253367" duration="339000" />
     </task>
     <task id="LOCAL-00001" summary="Commit 1">
       <option name="closed" value="true" />
@@ -237,7 +232,15 @@
       <option name="project" value="LOCAL" />
       <updated>1773949232046</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Commit 13">
+      <option name="closed" value="true" />
+      <created>1773959120443</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1773959120443</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -256,6 +259,7 @@
     <MESSAGE value="Commit 10" />
     <MESSAGE value="Commit 11" />
     <MESSAGE value="Commit 12" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit 12" />
+    <MESSAGE value="Commit 13" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit 13" />
   </component>
 </project>

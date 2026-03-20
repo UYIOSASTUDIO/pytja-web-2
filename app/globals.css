@@ -1,7 +1,5 @@
 @import "tailwindcss";
 
-@import "tailwindcss";
-
 @theme {
     --color-accent: #F46623;
     --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular;
@@ -9,22 +7,19 @@
 
 @layer base {
     :root {
-        --background: #0d0d0d;
+        --background: #000000;
         --foreground: #e5e5e5;
     }
 
-    /* ======================================================== */
-    /* iOS OVERSCROLL & RUBBER-BANDING FIX                      */
-    /* ======================================================== */
     html {
-        background-color: #ffffff;
-        background-image: linear-gradient(to bottom, #ffffff 0%, #ffffff 50%, #0a0a0a 50%, #0a0a0a 100%);
+        background-color: var(--background);
         height: 100%;
+        scroll-behavior: smooth;
     }
 
     body {
-        /* Body muss transparent sein, damit das HTML-Gradient an den Rändern durchscheint */
-        background-color: transparent;
+        /* Body greift die Root-Variable ab, dadurch entsteht eine solide Basis ohne Flackern */
+        background-color: var(--background);
         color: var(--foreground);
         min-height: 100%;
         overflow-x: clip;
@@ -37,8 +32,6 @@
             linear-gradient(to right, #1a1a1a 1px, transparent 1px),
             linear-gradient(to bottom, #1a1a1a 1px, transparent 1px);
 }
-
-/* Am Ende der globals.css */
 
 .preserve-3d {
     transform-style: preserve-3d;
@@ -77,3 +70,17 @@
 .animate-breathe-top { animation: breathe-top 5s ease-in-out infinite; }
 .animate-breathe-mid { animation: breathe-mid 5s ease-in-out infinite; }
 .animate-breathe-bot { animation: breathe-bot 5s ease-in-out infinite; }
+
+/* ======================================================== */
+/* COMPONENT STYLES: CODE SCROLLBARS                        */
+/* ======================================================== */
+.code-scroll::-webkit-scrollbar {
+    height: 4px;
+}
+.code-scroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+.code-scroll::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+}

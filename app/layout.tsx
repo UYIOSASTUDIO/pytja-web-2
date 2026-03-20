@@ -15,7 +15,7 @@ const fontMono = JetBrains_Mono({
 
 // --- VIEWPORT KONFIGURATION ---
 export const viewport: Viewport = {
-    themeColor: "#ffffff",
+    themeColor: "#0d0d0d", // Zwingt die iOS/Android Statusleiste auf das Pytja-Schwarz
     width: "device-width",
     initialScale: 1,
     maximumScale: 1,
@@ -40,10 +40,6 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en" className={`${fontSans.variable} ${fontMono.variable}`}>
-        {/* WICHTIG: Keine statische Hintergrundfarbe (bg-[...]) auf dem Body!
-              Die Hintergrundlogik wird komplett über die globals.css (iOS-Fix)
-              und die jeweiligen Seiten-Wrapper gesteuert.
-            */}
         <body className="text-white selection:bg-white selection:text-black antialiased">
         <ClientLayout>
             {children}
