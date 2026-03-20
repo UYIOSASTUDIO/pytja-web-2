@@ -15,7 +15,7 @@ const fontMono = JetBrains_Mono({
 
 // --- VIEWPORT KONFIGURATION ---
 export const viewport: Viewport = {
-    themeColor: "#0d0d0d", // Zwingt die iOS/Android Statusleiste auf das Pytja-Schwarz
+    themeColor: "#000000", // Zwingt die iOS/Android Statusleiste auf das Pytja-Schwarz
     width: "device-width",
     initialScale: 1,
     maximumScale: 1,
@@ -24,7 +24,7 @@ export const viewport: Viewport = {
 
 // --- METADATA KONFIGURATION ---
 export const metadata: Metadata = {
-    title: "Pytja | Enterprise Engine",
+    title: "Pytja | Unified Data Layer",
     description: "Zero-trace native speed. Unify databases & extend via WASM.",
     appleWebApp: {
         capable: true,
