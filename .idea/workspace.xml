@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb564e1f-a707-4140-aab3-f886758e6606" name="Changes" comment="Commit 19">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/SVG/pytja_logo_up.svg" beforeDir="false" afterPath="$PROJECT_DIR$/app/icon.svg" afterDir="false" />
+    <list default="true" id="bb564e1f-a707-4140-aab3-f886758e6606" name="Changes" comment="Commit 20">
+      <change beforePath="$PROJECT_DIR$/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/page.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,7 +125,7 @@
       <workItem from="1773658695490" duration="8295000" />
       <workItem from="1773734081261" duration="13952000" />
       <workItem from="1773907433252" duration="15372000" />
-      <workItem from="1774005253367" duration="5680000" />
+      <workItem from="1774005253367" duration="6016000" />
     </task>
     <task id="LOCAL-00001" summary="Commit 1">
       <option name="closed" value="true" />
@@ -289,7 +287,15 @@
       <option name="project" value="LOCAL" />
       <updated>1774009244888</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Commit 20">
+      <option name="closed" value="true" />
+      <created>1774019604440</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1774019604440</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -315,6 +321,7 @@
     <MESSAGE value="Commit 17" />
     <MESSAGE value="Commit 18" />
     <MESSAGE value="Commit 19" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit 19" />
+    <MESSAGE value="Commit 20" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit 20" />
   </component>
 </project>
