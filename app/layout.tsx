@@ -24,17 +24,21 @@ export const viewport: Viewport = {
 
 // --- METADATA KONFIGURATION ---
 export const metadata: Metadata = {
-    metadataBase: new URL("https://pytja.com"),
+    metadataBase: new URL("https://www.pytja.com"),
     title: "Pytja | Unified Data Layer",
     description: "Zero-trace native speed. Unify databases & extend via WASM.",
+    // HIER NEU: Der Autor, den LinkedIn fordert
+    authors: [{ name: "Pytja", url: "https://www.pytja.com" }],
+    creator: "Pytja",
+    publisher: "Pytja",
     openGraph: {
         title: "Pytja | Unified Data Layer",
         description: "Zero-trace native speed. Unify databases & extend via WASM.",
-        url: "https://pytja.com",
+        url: "https://www.pytja.com",
         siteName: "Pytja",
         images: [
             {
-                url: "@/public/opengraph-image.png",
+                url: "https://www.pytja.com/opengraph-image.png",
                 width: 1200,
                 height: 630,
                 alt: "Pytja | Unified Data Layer",
@@ -47,7 +51,7 @@ export const metadata: Metadata = {
         card: "summary_large_image",
         title: "Pytja | Unified Data Layer",
         description: "Zero-trace native speed. Unify databases & extend via WASM.",
-        images: ["@/public/opengraph-image.png"],
+        images: ["https://www.pytja.com/opengraph-image.png"],
         creator: "@pytja",
     },
     appleWebApp: {

@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb564e1f-a707-4140-aab3-f886758e6606" name="Changes" comment="Commit 27">
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+    <list default="true" id="bb564e1f-a707-4140-aab3-f886758e6606" name="Changes" comment="Commit 28">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/layout.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,7 +126,7 @@
       <workItem from="1773658695490" duration="8295000" />
       <workItem from="1773734081261" duration="13952000" />
       <workItem from="1773907433252" duration="15372000" />
-      <workItem from="1774005253367" duration="12230000" />
+      <workItem from="1774005253367" duration="13307000" />
     </task>
     <task id="LOCAL-00001" summary="Commit 1">
       <option name="closed" value="true" />
@@ -351,14 +352,21 @@
       <option name="project" value="LOCAL" />
       <updated>1774028494250</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Commit 28">
+      <option name="closed" value="true" />
+      <created>1774029691538</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1774029691538</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Commit 3" />
     <MESSAGE value="Commit 4" />
     <MESSAGE value="Commit 5" />
     <MESSAGE value="Commit 6" />
@@ -383,6 +391,7 @@
     <MESSAGE value="Commit 25" />
     <MESSAGE value="Commit 26" />
     <MESSAGE value="Commit 27" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit 27" />
+    <MESSAGE value="Commit 28" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit 28" />
   </component>
 </project>
