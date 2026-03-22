@@ -43,7 +43,7 @@ export default function PytjaLanding() {
     }, []);
 
     return (
-        <div className="relative min-h-screen bg-white font-sans selection:bg-black selection:text-white">
+        <div className="relative w-full bg-white font-sans selection:bg-black selection:text-white">
 
             {/* GRID ENTFERNT FÜR ABSOLUT CLEANEN LOOK */}
 

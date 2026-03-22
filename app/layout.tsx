@@ -13,13 +13,13 @@ const fontMono = JetBrains_Mono({
     variable: "--font-geist-mono",
 });
 
-// --- VIEWPORT KONFIGURATION ---
 export const viewport: Viewport = {
-    themeColor: "#000000", // Zwingt die iOS/Android Statusleiste auf das Pytja-Schwarz
-    width: "device-width",
+    width: 'device-width',
     initialScale: 1,
     maximumScale: 1,
-    viewportFit: "cover",
+    // DAS IST DER WICHTIGE TEIL FÜR EDGE-TO-EDGE:
+    viewportFit: 'cover',
+    // ACHTUNG: themeColor wurde hier absichtlich komplett GELÖSCHT!
 };
 
 // --- METADATA KONFIGURATION ---
@@ -68,7 +68,7 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en" className={`${fontSans.variable} ${fontMono.variable}`}>
-        <body className="text-white selection:bg-white selection:text-black antialiased">
+        <body className="bg-black text-black selection:bg-black selection:text-white antialiased">
         <ClientLayout>
             {children}
         </ClientLayout>

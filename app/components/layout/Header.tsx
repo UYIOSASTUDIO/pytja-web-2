@@ -132,11 +132,10 @@ export default function Header() {
 
     const mobileMenu = (
         <div
-            className={`fixed inset-x-4 z-[999999] lg:hidden transition-all duration-500 ease-in-out flex flex-col ${isMobileMenuOpen ? 'opacity-100 translate-y-0 pointer-events-auto visible' : 'opacity-0 -translate-y-4 pointer-events-none invisible'}`}
+            className={`fixed inset-x-4 z-[999999] lg:hidden transition-all duration-500 ease-in-out flex flex-col transform-gpu ${isMobileMenuOpen ? 'opacity-100 translate-y-0 pointer-events-auto visible' : 'opacity-0 -translate-y-4 pointer-events-none invisible'}`}
             style={{ top: '80px', height: 'calc(100vh - 100px)' }}
         >
-            {/* HIER GEÄNDERT: Dynamische Hintergrund- und Rahmenfarbe basierend auf isDarkMode */}
-            <div className={`border rounded-xl shadow-2xl flex flex-col h-full overflow-hidden transition-colors duration-500 ${
+            <div className={`border rounded-xl shadow-2xl flex flex-col h-full overflow-hidden transition-colors duration-500 transform-gpu ${
                 isDarkMode ? 'bg-black border-white/10 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.8)]' : 'bg-white border-black/10'
             }`}>
                 <div className="relative z-10 flex flex-col h-full pt-8 px-6 pb-6">
