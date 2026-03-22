@@ -135,16 +135,23 @@ export default function Header() {
             className={`fixed inset-x-4 z-[999999] lg:hidden transition-all duration-500 ease-in-out flex flex-col ${isMobileMenuOpen ? 'opacity-100 translate-y-0 pointer-events-auto visible' : 'opacity-0 -translate-y-4 pointer-events-none invisible'}`}
             style={{ top: '80px', height: 'calc(100vh - 100px)' }}
         >
-            <div className="bg-white border border-black/10 rounded-xl shadow-2xl flex flex-col h-full overflow-hidden">
+            {/* HIER GEÄNDERT: Dynamische Hintergrund- und Rahmenfarbe basierend auf isDarkMode */}
+            <div className={`border rounded-xl shadow-2xl flex flex-col h-full overflow-hidden transition-colors duration-500 ${
+                isDarkMode ? 'bg-black border-white/10 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.8)]' : 'bg-white border-black/10'
+            }`}>
                 <div className="relative z-10 flex flex-col h-full pt-8 px-6 pb-6">
 
                     <nav className="flex flex-col gap-6 mt-2">
                         <Link
                             href="/"
                             onClick={() => setIsMobileMenuOpen(false)}
-                            className={`text-2xl font-bold tracking-tight flex items-baseline gap-4 transition-colors ${pathname === '/' ? 'text-black' : 'text-black/50 hover:text-black'}`}
+                            className={`text-2xl font-bold tracking-tight flex items-baseline gap-4 transition-colors ${
+                                pathname === '/'
+                                    ? (isDarkMode ? 'text-white' : 'text-black')
+                                    : (isDarkMode ? 'text-white/40 hover:text-white' : 'text-black/50 hover:text-black')
+                            }`}
                         >
-                            <span className="text-[10px] font-mono text-black/20">01</span>
+                            <span className={`text-[10px] font-mono ${isDarkMode ? 'text-white/20' : 'text-black/20'}`}>01</span>
                             Home
                         </Link>
 
@@ -155,9 +162,13 @@ export default function Header() {
                                     key={item.label}
                                     href={item.href}
                                     onClick={() => setIsMobileMenuOpen(false)}
-                                    className={`text-2xl font-bold tracking-tight flex items-baseline gap-4 transition-colors ${isActive ? 'text-black' : 'text-black/50 hover:text-black'}`}
+                                    className={`text-2xl font-bold tracking-tight flex items-baseline gap-4 transition-colors ${
+                                        isActive
+                                            ? (isDarkMode ? 'text-white' : 'text-black')
+                                            : (isDarkMode ? 'text-white/40 hover:text-white' : 'text-black/50 hover:text-black')
+                                    }`}
                                 >
-                                    <span className="text-[10px] font-mono text-black/20">0{i + 2}</span>
+                                    <span className={`text-[10px] font-mono ${isDarkMode ? 'text-white/20' : 'text-black/20'}`}>0{i + 2}</span>
                                     {item.label}
                                 </Link>
                             );
@@ -169,26 +180,36 @@ export default function Header() {
                             <Link
                                 href="/contact"
                                 onClick={() => setIsMobileMenuOpen(false)}
-                                className="py-3 text-center text-[10px] font-bold uppercase border border-black/10 text-black/60 hover:text-black hover:border-black/30 transition-all rounded-md"
+                                className={`py-3 text-center text-[10px] font-bold uppercase border transition-all rounded-md ${
+                                    isDarkMode
+                                        ? 'border-white/10 text-white/60 hover:text-white hover:border-white/30'
+                                        : 'border-black/10 text-black/60 hover:text-black hover:border-black/30'
+                                }`}
                             >
                                 Support
                             </Link>
                             <Link
                                 href="/download"
                                 onClick={() => setIsMobileMenuOpen(false)}
-                                className="py-3 text-center text-[10px] font-bold uppercase bg-black text-white hover:bg-gray-800 transition-colors rounded-md"
+                                className={`py-3 text-center text-[10px] font-bold uppercase transition-colors rounded-md ${
+                                    isDarkMode
+                                        ? 'bg-white text-black hover:bg-gray-200'
+                                        : 'bg-black text-white hover:bg-gray-800'
+                                }`}
                             >
                                 Download
                             </Link>
                         </div>
 
-                        <div className="pt-4 border-t border-black/10 flex items-center justify-between text-[9px] font-mono text-black/40 uppercase tracking-widest">
+                        <div className={`pt-4 border-t flex items-center justify-between text-[9px] font-mono uppercase tracking-widest transition-colors ${
+                            isDarkMode ? 'border-white/10 text-white/40' : 'border-black/10 text-black/40'
+                        }`}>
                             <span className="truncate pr-4">Op. Elias Schmolke</span>
                             <div className="flex gap-4 shrink-0">
-                                <a href="https://github.com/pytja" target="_blank" rel="noopener noreferrer" className="hover:text-black transition-colors">
+                                <a href="https://github.com/pytja" target="_blank" rel="noopener noreferrer" className={isDarkMode ? 'hover:text-white' : 'hover:text-black'}>
                                     GitHub
                                 </a>
-                                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-black transition-colors">
+                                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className={isDarkMode ? 'hover:text-white' : 'hover:text-black'}>
                                     X/Twitter
                                 </a>
                             </div>
