@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function AboutPage() {
     const [mounted, setMounted] = useState(false);
@@ -647,8 +648,14 @@ export default function AboutPage() {
                                     </p>
                                 </div>
                                 <div className="flex-1 flex items-center justify-center relative z-10">
-                                    <div className="w-full aspect-[4/3] bg-black/[0.02] border border-black/10 rounded-xl flex items-center justify-center overflow-hidden relative shadow-sm">
-                                        <span className="text-[10px] font-mono text-gray-400 tracking-widest uppercase">Insert PNG Here</span>
+                                    <div className="w-full aspect-[4/3] overflow-hidden relative">
+                                        <Image
+                                            src="/render/3d-glass-5.png"
+                                            alt="Ephemeral WebAssembly Sandbox Architecture"
+                                            fill
+                                            quality={100}
+                                            className="object-cover"
+                                        />
                                     </div>
                                 </div>
                             </div>
@@ -667,8 +674,14 @@ export default function AboutPage() {
                                     </p>
                                 </div>
                                 <div className="flex-1 flex items-center justify-center relative z-10">
-                                    <div className="w-full aspect-[4/3] bg-black/[0.02] border border-black/10 rounded-xl flex items-center justify-center overflow-hidden relative shadow-sm">
-                                        <span className="text-[10px] font-mono text-gray-400 tracking-widest uppercase">Insert PNG Here</span>
+                                    <div className="w-full aspect-[4/3] overflow-hidden relative">
+                                        <Image
+                                            src="/render/3d-glass-4.png"
+                                            alt="Ephemeral WebAssembly Sandbox Architecture"
+                                            fill
+                                            quality={100}
+                                            className="object-cover"
+                                        />
                                     </div>
                                 </div>
                             </div>
@@ -686,8 +699,14 @@ export default function AboutPage() {
                                     </p>
                                 </div>
                                 <div className="flex-1 flex items-center justify-center relative z-10">
-                                    <div className="w-full aspect-[4/3] bg-black/[0.02] border border-black/10 rounded-xl flex items-center justify-center overflow-hidden relative shadow-sm">
-                                        <span className="text-[10px] font-mono text-gray-400 tracking-widest uppercase">Insert PNG Here</span>
+                                    <div className="w-full aspect-[4/3] overflow-hidden relative">
+                                        <Image
+                                            src="/render/3d-glass-7.png"
+                                            alt="Ephemeral WebAssembly Sandbox Architecture"
+                                            fill
+                                            quality={100}
+                                            className="object-cover"
+                                        />
                                     </div>
                                 </div>
                             </div>
@@ -705,8 +724,14 @@ export default function AboutPage() {
                                     </p>
                                 </div>
                                 <div className="flex-1 flex items-center justify-center relative z-10">
-                                    <div className="w-full aspect-[4/3] bg-black/[0.02] border border-black/10 rounded-xl flex items-center justify-center overflow-hidden relative shadow-sm">
-                                        <span className="text-[10px] font-mono text-gray-400 tracking-widest uppercase">Insert PNG Here</span>
+                                    <div className="w-full aspect-[4/3] overflow-hidden relative">
+                                        <Image
+                                            src="/render/3d-glass-2.png"
+                                            alt="Ephemeral WebAssembly Sandbox Architecture"
+                                            fill
+                                            quality={100}
+                                            className="object-cover"
+                                        />
                                     </div>
                                 </div>
                             </div>

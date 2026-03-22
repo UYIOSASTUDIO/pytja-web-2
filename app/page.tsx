@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { changelogData } from '@/lib/changelog';
+import Image from 'next/image';
 
 // --- DATEN FÜR DIE ARCHITEKTUR ---
 const archSteps = [
@@ -312,16 +313,18 @@ export default function PytjaLanding() {
                             {/* RECHTE SPALTE: Grafik / Bild Area (6 von 10 Spalten) */}
                             <div className="lg:col-span-6 relative min-h-[300px] lg:min-h-[450px] bg-gradient-to-br from-[#111] to-[#050505] overflow-hidden flex items-center justify-center p-8">
 
-                                {/* Temporärer Platzhalter für Spline-3D oder Bild */}
-                                <div className="text-center relative z-10">
-                                    <div className="w-16 h-16 border border-white/10 border-dashed rounded-lg flex items-center justify-center mx-auto mb-4 bg-white/[0.02]">
-                                        <svg className="w-6 h-6 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                        </svg>
-                                    </div>
-                                    <p className="text-[11px] font-mono text-gray-600 uppercase tracking-widest">
-                                        3D Graphic Placeholder
-                                    </p>
+                                {/* Das neue, finale Bild */}
+                                <div className="relative z-10 w-full max-w-[400px] mx-auto flex items-center justify-center">
+                                    <Image
+                                        // HIER DEN ECHTEN DATEINAMEN EINTRAGEN (z.B. "/wasm-architecture.png")
+                                        src="/render/3d-glass-main.png"
+                                        alt="Pytja Modular Architecture"
+                                        width={600}
+                                        height={500}
+                                        quality={100}
+                                        priority={true} // Da es "above the fold" bzw. prominent ist, laden wir es sofort
+                                        className="w-full h-auto object-contain drop-shadow-[0_0_30px_rgba(255,255,255,0.1)]"
+                                    />
                                 </div>
 
                                 {/* Subtiles Grid-Muster als Hintergrund */}

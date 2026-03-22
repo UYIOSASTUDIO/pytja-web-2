@@ -248,7 +248,7 @@ export default function ModulesPage() {
                             <div className="md:sticky md:top-32 flex flex-col gap-12 transform-gpu">
                                 <div>
             <span className="text-[10px] text-gray-400 font-mono uppercase tracking-widest block mb-4">
-                // Status Dashboard
+                Status Dashboard
             </span>
                                     <h3 className="text-2xl md:text-3xl font-medium tracking-tight text-black mb-4">
                                         Registry Insights
@@ -370,7 +370,7 @@ export default function ModulesPage() {
                         <div className="hidden md:block lg:col-span-3 p-6 md:p-8 lg:p-12 relative border-b md:border-b-0 border-white/10 relative z-0 before:absolute before:inset-y-0 before:right-0 before:w-[100vw] before:bg-white/[0.01] before:-z-10">
                             <div className="md:sticky md:top-32 flex flex-col gap-8 transform-gpu">
                                 <span className="text-[10px] text-gray-500 font-mono uppercase tracking-widest">
-                                    Contents
+                                    Index
                                 </span>
                                 <nav className="flex flex-col gap-6">
                                     {[

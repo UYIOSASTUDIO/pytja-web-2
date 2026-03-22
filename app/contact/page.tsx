@@ -37,20 +37,39 @@ export default function ContactPage() {
 
         setStatus('sending');
 
-        // Simulation API Call
+        // 1. Namen vor dem @-Zeichen extrahieren
+        const userName = formData.email.split('@')[0];
+
+        // 2. Den korrekten Label-Text für den Betreff ermitteln
+        const options: Record<string, string> = {
+            'feature': 'Feature Request // Architecture',
+            'bug': 'Bug Report // Security',
+            'collaboration': 'Collaboration Request // Collaboration',
+            'feedback': 'General Feedback // System'
+        };
+        const selectedLabel = options[formData.reason] || 'Contact Request';
+
+        // 3. E-Mail Inhalte URL-sicher encodieren
+        const subject = encodeURIComponent(`${selectedLabel} by ${userName}`);
+        const body = encodeURIComponent(formData.message);
+
+        // Kurze Verzögerung für den "Encrypting..." Terminal-Effekt
         setTimeout(() => {
+            // Öffnet das Mail-Programm des Nutzers mit den fertigen Daten
+            window.location.href = `mailto:elias.schmolke@gmail.com?subject=${subject}&body=${body}`;
+
             setStatus('success');
             setTimeout(() => {
                 setStatus('idle');
                 setFormData({ email: '', reason: 'feature', message: '' });
             }, 4000);
-        }, 2000);
+        }, 800);
     };
 
     const reasonOptions = [
         { value: 'feature', label: 'Feature Request // Architecture' },
         { value: 'bug', label: 'Bug Report // Security' },
-        { value: 'enterprise', label: 'Enterprise Inquiry // Licensing' },
+        { value: 'collaboration', label: 'Collaboration Request // Collaboration' },
         { value: 'feedback', label: 'General Feedback // System' }
     ];
 
@@ -78,7 +97,7 @@ export default function ContactPage() {
                                 Establish Connection
                             </h1>
                             <p className="text-[15px] md:text-[16px] text-gray-500 max-w-2xl font-light leading-relaxed">
-                                Submit your payload directly to the core architecture team. For security disclosures, enterprise licensing, or technical collaboration.
+                                Submit your payload directly to the core architecture team. For security disclosures, enterprise support, or technical collaboration.
                             </p>
                         </div>
                     </div>
@@ -94,7 +113,7 @@ export default function ContactPage() {
                             {/* Intro Text */}
                             <div className="pb-6 md:pb-12">
                                 <p className="text-[14px] md:text-[15px] text-gray-500 leading-relaxed font-light mb-8">
-                                    For security disclosures, enterprise licensing, or technical collaboration. We aim to respond within 24 hours. All inquiries are strictly confidential and governed by our privacy terms.
+                                    We aim to respond within 24 hours. All communications remain strictly confidential and governed by our privacy terms.
                                 </p>
 
                                 <Link href="/about" className="group inline-flex items-center gap-2 text-[13px] font-medium text-black transition-all w-fit border-b border-black/20 pb-0.5 hover:text-gray-600 hover:border-gray-600">

@@ -107,51 +107,48 @@ const sourceSteps = [
         title: "Clone Repository",
         desc: "For maximum transparency and custom compilation, pull the open-source code directly from our official GitHub repository into your local environment.",
         link: { text: "View Source on GitHub", href: "https://github.com/pytja/pytja" },
+        commands: [{ cmd: "git clone https://github.com/pytja/pytja.git && cd pytja" }]
     },
     {
         id: "step2",
         number: "02",
-        title: "Clone Repository",
-        desc: "For maximum transparency, pull the source code directly from the repository.",
-        commands: [{ cmd: "git clone https://github.com/pytja/core.git && cd core" }]
+        title: "Provision Infrastructure",
+        desc: "Pytja requires a local Redis cache for sub-millisecond session validation. For development environments, running Redis via Docker is the cleanest, recommended approach.",
+        commands: [
+            { cmd: "docker run --name pytja-redis -p 6379:6379 -d redis", output: "# Recommended: Universal Docker Container" },
+            { cmd: "brew install redis && brew services start redis", output: "# Fallback: macOS Native via Homebrew" }
+        ]
     },
     {
         id: "step3",
         number: "03",
-        title: "Compile Release",
-        desc: "Build the project using Cargo (requires the Rust toolchain). All compiled binaries will be located in the ./target/release/ directory.",
+        title: "Compile Core Engine",
+        desc: "Build the project using the Rust toolchain (Cargo). This will compile the core daemon, the identity registrar, and the admin interface directly from source.",
         commands: [{ cmd: "cargo build --release", output: "Finished release [optimized] target(s) in 42.0s" }]
     },
     {
         id: "step4",
         number: "04",
-        title: "Zero-Trust TLS Setup",
-        desc: "Navigate to the release folder and generate your Self-Signed TLS certificates to encrypt local gRPC communication.",
+        title: "Environment & TLS Setup",
+        desc: "Create your sovereign configuration. Copy the reference environment file, create a dedicated certificates directory, and generate the mandatory Self-Signed TLS keys for encrypted gRPC communication.",
         commands: [
-            { cmd: "cd target/release && cp ../../.env.example .env" },
-            { cmd: 'openssl req -x509 -newkey rsa:4096 -keyout server.key -out server.crt -days 365 -nodes -subj "/CN=localhost"' }
+            { cmd: "cp .env.example .env && mkdir certs", output: "# Initialize environment structure" },
+            { cmd: 'openssl req -x509 -newkey rsa:4096 -keyout certs/server.key -out certs/server.crt -days 365 -nodes -subj "/CN=localhost"', output: "# Generate Zero-Trust certificates" }
         ]
     },
     {
         id: "step5",
         number: "05",
         title: "Identity Generation",
-        desc: "Access is granted via Ed25519 asymmetric cryptography. Launch the interactive registrar and follow the prompts.",
-        commands: [{ cmd: "./pytja_registrar", output: "[INFO] Launching interactive setup...\n> Enter username: admin\n> Set Master Password: ***" }]
+        desc: "Access is strictly granted via Ed25519 asymmetric cryptography. Execute the compiled registrar binary to securely generate your administrative identity file.",
+        commands: [{ cmd: "./target/release/pytja_registrar", output: "[INFO] Launching interactive setup...\n> Enter username: admin\n> Set Master Password: ***" }]
     },
     {
         id: "step6",
         number: "06",
         title: "Launch Engine",
-        desc: "Execute the compiled binary. It will auto-detect if the core is offline, fork a background daemon, and connect the interactive shell.",
-        commands: [{ cmd: "./pytja", output: "[SYSTEM] Core offline. Forking background daemon...\n[SYSTEM] Connecting to interactive shell..." }]
-    },
-    {
-        id: "step7",
-        number: "07",
-        title: "System Administration",
-        desc: "Once the daemon is running, launch the fully interactive admin dashboard.",
-        commands: [{ cmd: "./pytja_admin", output: "[SYSTEM] Initializing interactive dashboard...\n> Select module: [Users] [Databases] [RBAC] [System]" }]
+        desc: "Execute the compiled core binary. It will parse your environment, load the manually generated TLS certificates, and fork the gRPC daemon into the background.",
+        commands: [{ cmd: "./target/release/pytja", output: "[SYSTEM] Core offline. Forking background daemon...\n[SYSTEM] Connecting to interactive shell..." }]
     }
 ];
 
@@ -251,7 +248,7 @@ export default function ManualPage() {
                 .code-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 2px; }
             `}</style>
 
-            <main className="relative z-10 pt-32 pb-48 md:pt-40">
+            <main className="relative z-10 pt-32 md:pt-40">
 
                 {/* --- GRID HEADER ROW --- */}
                 <div className="w-full">
@@ -467,7 +464,7 @@ function EnvBlock({ content }: { content: string }) {
                         <line x1="16" y1="17" x2="8" y2="17"></line>
                         <polyline points="10 9 9 9 8 9"></polyline>
                     </svg>
-                    <span className="text-[10px] text-white/50 uppercase tracking-widest font-bold">.env.example</span>
+                    <span className="text-[10px] text-white/50 uppercase tracking-widest font-bold">.env</span>
                 </div>
 
                 <button
@@ -516,12 +513,8 @@ function EnvBlock({ content }: { content: string }) {
 
 function BinaryIcon() {
     return (
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <rect x="4" y="4" width="16" height="16" rx="2" />
-            <rect x="9" y="9" width="2" height="2" fill="currentColor" fillOpacity="0.5" />
-            <rect x="9" y="13" width="2" height="2" fill="currentColor" fillOpacity="0.5" />
-            <rect x="13" y="9" width="2" height="2" fill="currentColor" fillOpacity="0.5" />
-            <rect x="13" y="13" width="2" height="2" fill="currentColor" fillOpacity="0.5" />
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 002.25-2.25V6.75a2.25 2.25 0 00-2.25-2.25H6.75A2.25 2.25 0 004.5 6.75v10.5a2.25 2.25 0 002.25 2.25zm.75-12h9v9h-9v-9z" />
         </svg>
     )
 }
