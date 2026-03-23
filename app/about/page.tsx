@@ -788,7 +788,7 @@ export default function AboutPage() {
 
                                 {/* Email */}
                                 <a
-                                    href="mailto:contact@pytja.com"
+                                    href="mailto:elias.schmolke@pytja.com"
                                     className="flex items-center justify-center w-12 h-12 border border-black/10 bg-white text-black rounded-md hover:bg-black/[0.02] hover:border-black/20 transition-all shadow-sm shrink-0"
                                     aria-label="Send Email"
                                 >
@@ -799,7 +799,7 @@ export default function AboutPage() {
 
                                 {/* GitHub */}
                                 <a
-                                    href="https://github.com/uyiosastudio"
+                                    href="https://github.com/pytja"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="flex items-center justify-center w-12 h-12 border border-black/10 bg-white text-black rounded-md hover:bg-black/[0.02] hover:border-black/20 transition-all shadow-sm shrink-0"

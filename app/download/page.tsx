@@ -94,7 +94,7 @@ export default function DownloadPage() {
                                 </ul>
 
                                 {/* Keine Icon-Bewegung bei Hover */}
-                                <Link href="/downloads/pytja-installer-v1.0.4.exe" className="relative z-10 w-full py-4 flex items-center justify-center gap-3 border transition-colors duration-300 uppercase text-[10px] font-bold tracking-[0.3em] bg-white text-black border-white hover:bg-gray-200 rounded-md mt-auto">
+                                <Link href="https://github.com/pytja/pytja/releases" className="relative z-10 w-full py-4 flex items-center justify-center gap-3 border transition-colors duration-300 uppercase text-[10px] font-bold tracking-[0.3em] bg-white text-black border-white hover:bg-gray-200 rounded-md mt-auto">
                                     Download Installer
                                     <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                                         <path strokeLinecap="square" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
@@ -134,7 +134,7 @@ export default function DownloadPage() {
                                 </ul>
 
                                 {/* Keine Icon-Bewegung bei Hover */}
-                                <Link href="https://github.com/pytja/core" target="_blank" className="relative z-10 w-full py-4 flex items-center justify-center gap-3 border transition-colors duration-300 uppercase text-[10px] font-bold tracking-[0.3em] bg-transparent text-white border-white/20 hover:border-white/50 hover:bg-white/5 rounded-md mt-auto">
+                                <Link href="https://github.com/pytja/pytja" target="_blank" className="relative z-10 w-full py-4 flex items-center justify-center gap-3 border transition-colors duration-300 uppercase text-[10px] font-bold tracking-[0.3em] bg-transparent text-white border-white/20 hover:border-white/50 hover:bg-white/5 rounded-md mt-auto">
                                     View on GitHub
                                     <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                                         <path strokeLinecap="square" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
