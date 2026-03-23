@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 
-// --- MOCK DATA FOR PLUGINS (ENTERPRISE GRADE) ---
 const plugins = [
     {
         id: "demo_plugin",
@@ -12,7 +11,8 @@ const plugins = [
         desc: "A demo plugin build for developers to explore the capability and possibilities of the pytja modularity system powered by WASM.",
         author: "Elias Schmolke",
         size: "410 KB",
-        updated: "2026-03-19"
+        updated: "2026-03-19",
+        downloadUrl: "https://github.com/pytja/pytja/tree/main/plugins" // Hier die echte URL einfügen
     },
 ];
 
@@ -329,12 +329,17 @@ export default function ModulesPage() {
                                             <div className="flex gap-3">
                                                 <span>{plugin.size}</span>
                                             </div>
-                                            <button className="flex items-center gap-2 text-black hover:text-gray-500 transition-colors font-bold group/btn hover:cursor-pointer">
-                                                Install
+                                            <a
+                                                href={plugin.downloadUrl}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex items-center gap-2 text-black hover:text-gray-500 transition-colors font-bold group/btn hover:cursor-pointer"
+                                            >
+                                                Download
                                                 <svg className="w-3 h-3 transform transition-transform group-hover/btn:translate-y-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                                                     <path strokeLinecap="round" strokeLinejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
                                                 </svg>
-                                            </button>
+                                            </a>
                                         </div>
                                     </div>
                                 ))}
@@ -527,7 +532,7 @@ export default function ModulesPage() {
                                         Deployment
                                     </h3>
                                     <p className="text-[14px] md:text-[15px] lg:text-[16px] text-gray-400 leading-relaxed font-light mb-6">
-                                        Once compiled, place your <code className="text-white bg-white/10 px-1.5 py-0.5 rounded text-sm">.wasm</code> binary alongside its <code className="text-white bg-white/10 px-1.5 py-0.5 rounded text-sm">plugin_name.json</code> into the <code className="text-white bg-white/10 px-1.5 py-0.5 rounded text-sm">plugins</code> directory at the root level. The engine will automatically parse the permissions and enforce the strict sandbox constraints.
+                                        Once compiled, place your <code className="text-white bg-white/10 px-1.5 py-0.5 rounded text-sm">.wasm</code> binary alongside its <code className="text-white bg-white/10 px-1.5 py-0.5 rounded text-sm">plugin_name.json</code> into the /plugins directory at the root level. The engine will automatically parse the permissions and enforce the strict sandbox constraints.
                                     </p>
                                     <p className="text-[14px] md:text-[15px] lg:text-[16px] text-gray-400 leading-relaxed font-light mb-12">
                                         Upon initial execution, the core engine halts the boot sequence to mandate explicit authorization. Before the shell environment initializes, you must review and manually verify the exact permissions requested by the module's manifest. This zero-trust protocol ensures no plugin can silently acquire unauthorized host access.
