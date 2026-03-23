@@ -35,7 +35,7 @@ export default function ImprintPage() {
                         Operator
                     </h3>
                     <div className="text-sm text-gray-600 font-light leading-relaxed space-y-1">
-                        <p>Mail: <a href="mailto:contact@pytja.com" className="text-black font-medium hover:underline decoration-cyan-500/50">contact@pytja.com</a></p>
+                        <p>Mail: <a href="mailto:mail@pytja.com" className="text-black font-medium hover:underline decoration-cyan-500/50">mail@pytja.com</a></p>
                         <p>Web: <a href="https://eliasschmolke.com" className="text-black font-medium hover:underline decoration-cyan-500/50">eliasschmolke.com</a></p>
                     </div>
                 </div>

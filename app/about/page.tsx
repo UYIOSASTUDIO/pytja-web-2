@@ -396,7 +396,7 @@ export default function AboutPage() {
                                 Rust & Tokio
                             </h3>
                             <p className="text-[14px] text-gray-500 leading-relaxed font-light line-clamp-2">
-                                Deterministic memory safety. Handles concurrent data streams reliably.
+                                terministic memory safety. Reliable concurrent streaming.
                             </p>
                         </div>
                     </div>
@@ -644,7 +644,7 @@ export default function AboutPage() {
                                         Seamless Single-Binary Daemonization
                                     </h3>
                                     <p className="text-[14px] md:text-[15px] lg:text-[16px] text-gray-500 leading-relaxed font-light">
-                                        Despite its complex client-server architecture, Pytja delivers a frictionless user experience. Packaged as a single executable, the CLI intelligently pings the local network upon invocation. If the core engine is offline, the executable seamlessly forks the server into a background daemon and connects the interactive shell in milliseconds. This provides the power of a distributed enterprise backend with the simplicity of a standalone local tool.
+                                        Despite its complex client-server architecture, Pytja delivers a frictionless user experience. Packaged as a single executable, the CLI intelligently pings the local network upon invocation. If the core engine is offline, the executable seamlessly forks the server into a background daemon and connects the interactive shell in milliseconds. This provides the power of a distributed backend with the simplicity of a standalone local tool.
                                     </p>
                                 </div>
                                 <div className="flex-1 flex items-center justify-center relative z-10">
@@ -841,7 +841,7 @@ export default function AboutPage() {
 
                                 {/* Der Background-Kontext */}
                                 <p className="text-[14px] md:text-[15px] lg:text-[16px] text-gray-500 leading-relaxed font-light">
-                                    As an International Management student with a deep-seated interest in system architecture and cybersecurity, my goal is to build tools that do not compromise on security or performance. Pytja is the result of applying bare-metal engineering principles to modern data challenges, ensuring every line of code serves a highly optimized purpose.
+                                    After years of focusing strictly on the frontend layer, Pytja began as a passion project to understand the absolute core of data infrastructure. As an International Management student fascinated by system architecture and cybersecurity, my goal was to look beneath the abstractions and comprehend the raw mechanics under the hood. Pytja is the result of this deep dive, an uncompromising exploration of bare-metal engineering where every line of code serves a highly optimized purpose.
                                 </p>
                             </div>
                         </div>

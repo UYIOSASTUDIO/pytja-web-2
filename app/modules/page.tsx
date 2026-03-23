@@ -254,7 +254,7 @@ export default function ModulesPage() {
                                         Registry Insights
                                     </h3>
                                     <p className="text-[14px] md:text-[15px] text-gray-500 leading-relaxed font-light">
-                                        The repository is updated in real-time. Use the Pytja CLI to fetch and hot-swap modules without restarting the kernel.
+                                        Repository updates in real time. Fetch modules via the Pytja CLI and integrate seamlessly. A quick shell reload initializes WASM plugins in a fresh sandbox.
                                     </p>
                                 </div>
 
@@ -357,7 +357,7 @@ export default function ModulesPage() {
                                     Building Modules
                                 </h2>
                                 <p className="text-[15px] md:text-[16px] text-gray-400 max-w-2xl font-light leading-relaxed">
-                                    Write custom data parsers or analytical tools in Rust, C, or Go. Compile to WASI and inject them directly into the secure execution layer.
+                                    Write custom data parsers or analytical tools in any language that compiles to WebAssembly. Build your WASI modules and inject them directly into the secure execution layer.
                                 </p>
                             </div>
                         </div>
@@ -468,7 +468,7 @@ export default function ModulesPage() {
                                         <div className="space-y-3">
                                             <p className="text-[10px] text-white/50 font-bold uppercase tracking-widest">Example Specification</p>
                                             <CodeBlock
-                                                filename="manifest.json"
+                                                filename="plugin_name.json"
                                                 language="json"
                                                 code={`{\n  "name": "pytja_core_plugin",\n  "version": "1.0.0",\n  "description": "Enterprise VFS & C2 Telemetry Agent",\n  "permissions": [\n    "fs_read",\n    "fs_write",\n    "network_tcp",\n    "radar_ipc",\n    "admin",\n    "display_ui"\n  ],\n  "autostart": true\n}`}
                                             />
@@ -526,8 +526,11 @@ export default function ModulesPage() {
                                     <h3 className="text-2xl md:text-3xl font-medium text-white mb-6 tracking-tight text-balance">
                                         Deployment
                                     </h3>
+                                    <p className="text-[14px] md:text-[15px] lg:text-[16px] text-gray-400 leading-relaxed font-light mb-6">
+                                        Once compiled, place your <code className="text-white bg-white/10 px-1.5 py-0.5 rounded text-sm">.wasm</code> binary alongside its <code className="text-white bg-white/10 px-1.5 py-0.5 rounded text-sm">plugin_name.json</code> into the <code className="text-white bg-white/10 px-1.5 py-0.5 rounded text-sm">plugins</code> directory at the root level. The engine will automatically parse the permissions and enforce the strict sandbox constraints.
+                                    </p>
                                     <p className="text-[14px] md:text-[15px] lg:text-[16px] text-gray-400 leading-relaxed font-light mb-12">
-                                        Once compiled, place your <code className="text-white bg-white/10 px-1.5 py-0.5 rounded text-sm">.wasm</code> binary alongside its <code className="text-white bg-white/10 px-1.5 py-0.5 rounded text-sm">manifest.json</code> in the active registry directory. The engine will automatically parse the permissions and apply the sandbox constraints.
+                                        Upon initial execution, the core engine halts the boot sequence to mandate explicit authorization. Before the shell environment initializes, you must review and manually verify the exact permissions requested by the module's manifest. This zero-trust protocol ensures no plugin can silently acquire unauthorized host access.
                                     </p>
                                     <div className="space-y-8">
                                         <div className="space-y-3">

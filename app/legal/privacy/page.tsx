@@ -9,7 +9,7 @@ export default function PrivacyPage() {
                 <div className="flex flex-wrap items-center gap-4 text-[10px] font-mono text-gray-400 uppercase tracking-widest">
                     <span>Data Protection & GDPR</span>
                     <span className="w-1 h-1 bg-black/20 rounded-full" />
-                    <span>Effective: May 2024</span>
+                    <span>Effective: March 2026</span>
                 </div>
             </header>
 

@@ -131,7 +131,7 @@ export default function LegalLayout({ children }: { children: React.ReactNode })
                                         </div>
                                         <div className="text-[9px] text-gray-500 font-mono leading-relaxed uppercase tracking-widest">
                                             <span className="text-black font-bold">Standard Protocol</span><br/>
-                                            Verified: 2026-03-16<br/>
+                                            Verified: March 2026<br/>
                                             Status: Active
                                         </div>
                                     </div>

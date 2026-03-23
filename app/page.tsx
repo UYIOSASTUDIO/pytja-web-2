@@ -43,7 +43,7 @@ export default function PytjaLanding() {
     }, []);
 
     return (
-        <div className="relative w-full bg-black font-sans selection:bg-black selection:text-white">
+        <div className="relative w-full bg-white font-sans selection:bg-black selection:text-white">
 
             {/* MOBILE DROPDOWN OVERLAY */}
             <div
@@ -169,7 +169,7 @@ export default function PytjaLanding() {
                         </h2>
 
                         {/* Der Terminal Container */}
-                        <div className="w-full max-w-3xl rounded-xl overflow-hidden bg-[#0a0a0a] border border-black/10 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)]">
+                        <div className="w-full max-w-3xl rounded-xl overflow-hidden bg-[#0a0a0a] border-2 border-white/30 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)]">
                             {/* Mac-Style Header des Terminals */}
                             <div className="h-10 bg-[#1a1a1a] flex items-center px-4 gap-2 border-b border-white/5">
                                 <div className="w-3 h-3 rounded-full bg-[#ff5f56]" />
@@ -370,8 +370,10 @@ export default function PytjaLanding() {
                             {/* MITTLERE BOX (3 von 10 Spalten) */}
                             <div className="lg:col-span-3 p-6 md:p-8 lg:p-12 flex flex-col justify-between min-h-[220px] lg:min-h-[340px]">
                                 <div className="mb-8 lg:mb-0">
-                                    <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+                                    {/* Klassisches, klares Enterprise-Zahnrad */}
+                                    <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.25">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                     </svg>
                                 </div>
                                 <div>
@@ -415,17 +417,29 @@ export default function PytjaLanding() {
                     </h2>
 
                     <Link
-                        href="/download"
-                        className="group flex items-center gap-3 px-6 py-3 bg-black border border-black/10 rounded-full hover:bg-gray-800 transition-all shadow-[0_8px_30px_rgb(0,0,0,0.12)]"
+                        href="/about"
+                        className="group flex items-center gap-3 px-6 py-3 bg-black border border-black/10 rounded-full transition-all duration-500 shadow-[0_8px_30px_rgb(0,0,0,0.12)]"
                     >
-                        <div className="w-5 h-5 flex items-center justify-center rounded-full bg-emerald-500/20 text-emerald-400">
+                        {/* Das grüne Blitz-Icon bleibt unverändert */}
+                        <div className="w-5 h-5 flex items-center justify-center rounded-full bg-emerald-500/20 text-emerald-400 shrink-0">
                             <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
                             </svg>
                         </div>
-                        <span className="text-white text-[13px] font-bold tracking-[0.2em] uppercase">
-                            Explore Pytja
-                        </span>
+
+                        {/* Text und neuer Pfeil im gemeinsamen Flex-Container */}
+                        <div className="flex items-center">
+                            <span className="text-white text-[13px] font-bold tracking-[0.2em] uppercase whitespace-nowrap">
+                                Explore Pytja
+                            </span>
+
+                            {/* Der animierte Pfeil */}
+                            <div className="flex items-center overflow-hidden transition-all duration-500 max-w-0 opacity-0 group-hover:max-w-[24px] group-hover:opacity-100 group-hover:ml-3">
+                                <svg className="w-4 h-4 text-white shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                                    <path strokeLinecap="square" strokeLinejoin="miter" d="M5 12h14m-7-7 7 7-7 7" />
+                                </svg>
+                            </div>
+                        </div>
                     </Link>
                 </section>
 
