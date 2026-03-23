@@ -78,7 +78,7 @@ export default function ContactPage() {
     if (!mounted) return null;
 
     return (
-        <div className="relative w-full bg-black font-sans selection:bg-black selection:text-white">
+        <div className="relative w-full bg-white font-sans selection:bg-black selection:text-white">
             <style jsx global>{`
                 html { overflow-y: auto; overflow-x: hidden; height: auto; }
                 body { background-color: #000000; min-height: 100vh; position: relative; }
