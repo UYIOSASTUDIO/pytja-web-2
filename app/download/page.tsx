@@ -29,7 +29,7 @@ export default function DownloadPage() {
         <div className="relative min-h-screen bg-white font-sans selection:bg-black selection:text-white">
             <style jsx global>{`
                 html { overflow-y: auto; overflow-x: hidden; height: auto; }
-                body { background-color: #ffffff; min-height: 100vh; position: relative; }
+                body { background-color: #000000; min-height: 100vh; position: relative; }
             `}</style>
 
             {/* main padding angepasst, da die Sektionen jetzt eigene Paddings haben */}

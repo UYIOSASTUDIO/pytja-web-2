@@ -78,14 +78,14 @@ export default function ContactPage() {
     if (!mounted) return null;
 
     return (
-        <div className="relative min-h-screen bg-white font-sans selection:bg-black selection:text-white">
+        <div className="relative w-full bg-black font-sans selection:bg-black selection:text-white">
             <style jsx global>{`
                 html { overflow-y: auto; overflow-x: hidden; height: auto; }
-                body { background-color: #ffffff; min-height: 100vh; position: relative; }
+                body { background-color: #000000; min-height: 100vh; position: relative; }
             `}</style>
 
             {/* HIER GEÄNDERT: pt-32 pb-16 für kompakteren Abstand */}
-            <main className="relative z-10 pt-32 pb-16 md:pt-40 md:pb-24">
+            <main className="relative z-10 pt-32 md:pt-40">
 
                 {/* --- COMPACT HERO HEADER --- */}
                 <div className="w-full">

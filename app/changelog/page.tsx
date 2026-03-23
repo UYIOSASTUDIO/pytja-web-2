@@ -148,7 +148,7 @@ export default function ChangelogPage() {
                 </section>
 
                 {/* --- CHANGELOG GRID SECTIONS --- */}
-                <div className="w-full mb-32">
+                <div className="w-full">
                     {filteredData.map((entry, index) => (
                         <section key={entry.hash} className={`w-full relative z-20 ${index !== filteredData.length - 1 ? 'border-b border-black/10' : ''}`} style={{ clipPath: 'inset(0)' }}>
                             <div className="grid grid-cols-1 lg:grid-cols-10 divide-y lg:divide-y-0 lg:divide-x divide-black/10 max-w-[1600px] mx-auto px-0 md:px-12 lg:px-24">
