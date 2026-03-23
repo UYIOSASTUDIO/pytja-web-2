@@ -64,7 +64,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="en" className={`${fontSans.variable} ${fontMono.variable}`}>
-        <body className="bg-white text-black selection:bg-black selection:text-white antialiased">
+        <body className="bg-black selection:bg-white selection:text-black antialiased">
 
         {/* Unsichtbarer Controller, der das fehlerhafte Scrolling fixt */}
         <ScrollReset />
