@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import ClientLayout from "./components/layout/ClientLayout";
+import {black} from "next/dist/lib/picocolors";
 
 const fontSans = Inter({
     subsets: ["latin"],
@@ -17,9 +18,7 @@ export const viewport: Viewport = {
     width: 'device-width',
     initialScale: 1,
     maximumScale: 1,
-    // DAS IST DER WICHTIGE TEIL FÜR EDGE-TO-EDGE:
     viewportFit: 'cover',
-    // ACHTUNG: themeColor wurde hier absichtlich komplett GELÖSCHT!
 };
 
 // --- METADATA KONFIGURATION ---
