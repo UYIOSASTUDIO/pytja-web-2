@@ -42,10 +42,10 @@ export default function ContactPage() {
 
         // 2. Den korrekten Label-Text für den Betreff ermitteln
         const options: Record<string, string> = {
-            'feature': 'Feature Request // Architecture',
-            'bug': 'Bug Report // Security',
-            'collaboration': 'Collaboration Request // Collaboration',
-            'feedback': 'General Feedback // System'
+            'feature': 'Feature Request',
+            'bug': 'Bug Report',
+            'collaboration': 'Collaboration Request',
+            'feedback': 'General Feedback'
         };
         const selectedLabel = options[formData.reason] || 'Contact Request';
 
