@@ -137,7 +137,7 @@ export default function ContactPage() {
                                     </h4>
 
                                     <p className="text-[13px] text-gray-500 leading-relaxed font-light mb-5 relative z-10">
-                                        For architectural questions, deployment configurations, or plugin development, please consult our community discussions instead of direct transmission.
+                                        For architectural questions, deployment configurations, or plugin development, you can always join the community discussions on GitHub.
                                     </p>
 
                                     <a href="https://github.com/pytja/pytja/discussions" target="_blank" rel="noopener noreferrer" className="group inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.1em] text-black transition-all hover:text-gray-500 relative z-10 border border-black/10 bg-black/[0.02] hover:bg-black/[0.04] px-4 py-2 rounded-md">
