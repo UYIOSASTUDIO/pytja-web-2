@@ -40,8 +40,8 @@ export default function DownloadPage() {
                     <div className="w-full text-center px-6 max-w-4xl mx-auto space-y-6">
                         <div className="inline-flex items-center gap-3 border border-black/10 bg-black/[0.02] px-4 py-1.5 rounded-full w-fit mx-auto">
                             <div className="relative flex items-center justify-center w-2 h-2">
-                                <span className="animate-ping absolute inline-flex h-full w-full rounded-sm bg-black/40 opacity-75"></span>
-                                <span className="relative inline-flex rounded-sm h-1.5 w-1.5 bg-black/80"></span>
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-sm bg-orange-400 opacity-75"></span>
+                                <span className="relative inline-flex rounded-sm h-1.5 w-1.5 bg-orange-500"></span>
                             </div>
                             <span className="text-[9px] md:text-[10px] text-gray-600 font-mono tracking-[0.4em] uppercase font-bold">
                                 Distribution Hub
@@ -60,6 +60,30 @@ export default function DownloadPage() {
                 {/* --- DOWNLOAD CARDS (Mit durchgehender Linie oben) --- */}
                 <section className="w-full border-t border-black/10 relative z-20">
                     <div className="max-w-[1600px] mx-auto px-6 md:px-12 lg:px-24 py-16 md:py-24">
+
+                        {/* --- NEU: PRE-RELEASE DISCLAIMER --- */}
+                        <div className="max-w-5xl mx-auto mb-10">
+                            <div className="flex flex-col p-5 md:p-6 border border-orange-500/20 bg-orange-500/5 rounded-xl">
+
+                                {/* Icon und Überschrift in einer Zeile. Das Icon steht ganz links. */}
+                                <div className="flex items-center gap-2.5 mb-2.5">
+                                    <svg className="w-5 h-5 text-orange-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                    </svg>
+                                    <h4 className="text-[12px] md:text-[13px] font-bold text-orange-600 uppercase tracking-widest mt-0.5">
+                                        Pre-Release Architecture
+                                    </h4>
+                                </div>
+
+                                {/* Fließtext schließt jetzt exakt bündig mit der linken Kante des Icons ab */}
+                                <p className="text-[13.5px] md:text-[14.5px] text-gray-600 leading-relaxed">
+                                    Pytja is currently in active early development. While the core WASM engine and sandbox isolation are functional, the system has not yet been certified for mission-critical production workloads. Please test thoroughly in sandboxed environments before deploying to live infrastructure.
+                                </p>
+
+                            </div>
+                        </div>
+                        {/* --- ENDE DISCLAIMER --- */}
+
                         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-10">
 
                             {/* OPTION 1: COMPILED BINARY (Dark Box) */}
@@ -270,12 +294,15 @@ export default function DownloadPage() {
                     </div>
                 </section>
 
-                {/* Security Note Footer (Ohne eigene Rahmen, schließt optisch die Architektur-Section ab) */}
+                {/* Security Note Footer */}
                 <section className="w-full relative z-10">
                     <div className="max-w-[1600px] mx-auto text-center py-12 px-6">
                         <p className="text-[11px] text-gray-500 uppercase tracking-widest leading-relaxed font-mono">
-                            // Security Notice: All binaries are cryptographically signed.<br/>
-                            Do not run executables if the checksum does not match the official record published on our <Link href="/legal/transparency" className="text-black font-bold hover:underline underline-offset-2 transition-all">transparency log</Link>.
+                            Security Notice: Strict Binary Verification.<br/>
+                            Do not run executables if the SHA-256 checksum does not match the official records published on our <a href="https://github.com/pytja/pytja/releases" target="_blank" rel="noopener noreferrer" className="text-black font-bold hover:underline underline-offset-2 transition-all">release page</a>.<br/>
+                            <span className="text-gray-400/60 mt-2 block text-[9px]">
+                                Automated Integrity Verification (SHA-256) enforced since v1.0.2-pre.
+                            </span>
                         </p>
                     </div>
                 </section>
