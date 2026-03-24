@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb564e1f-a707-4140-aab3-f886758e6606" name="Changes" comment="Final Release - Pytja Web V1.0.8">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(manual)/manual/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(manual)/manual/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/changelog/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/changelog/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/changelog.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/changelog.ts" afterDir="false" />
-    </list>
+    <list default="true" id="bb564e1f-a707-4140-aab3-f886758e6606" name="Changes" comment="Final Release - Pytja Web V1.0.9" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -134,15 +129,7 @@
       <workItem from="1774181894794" duration="9860000" />
       <workItem from="1774260979781" duration="10775000" />
       <workItem from="1774350916546" duration="3943000" />
-      <workItem from="1774359469213" duration="2748000" />
-    </task>
-    <task id="LOCAL-00002" summary="Commit 2">
-      <option name="closed" value="true" />
-      <created>1772019407254</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1772019407254</updated>
+      <workItem from="1774359469213" duration="3526000" />
     </task>
     <task id="LOCAL-00003" summary="Commit 3">
       <option name="closed" value="true" />
@@ -528,14 +515,21 @@
       <option name="project" value="LOCAL" />
       <updated>1774360899178</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="Final Release - Pytja Web V1.0.9">
+      <option name="closed" value="true" />
+      <created>1774362487116</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1774362487116</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Commit 25" />
     <MESSAGE value="Commit 26" />
     <MESSAGE value="Commit 27" />
     <MESSAGE value="Commit 28" />
@@ -560,6 +554,7 @@
     <MESSAGE value="Final Release - Pytja Web V1.0.6" />
     <MESSAGE value="Final Release - Pytja Web V1.0.7" />
     <MESSAGE value="Final Release - Pytja Web V1.0.8" />
-    <option name="LAST_COMMIT_MESSAGE" value="Final Release - Pytja Web V1.0.8" />
+    <MESSAGE value="Final Release - Pytja Web V1.0.9" />
+    <option name="LAST_COMMIT_MESSAGE" value="Final Release - Pytja Web V1.0.9" />
   </component>
 </project>
