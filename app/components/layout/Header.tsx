@@ -234,7 +234,7 @@ export default function Header() {
                             className={`${blockStyle} px-4 md:px-6 transition-colors duration-500 cursor-pointer flex items-center justify-center`}
                         >
                             <img
-                                src="/SVG/pytja_logo_text.svg"
+                                src="/SVG/pytja_logo_web.svg"
                                 alt="Pytja Logo"
                                 className={`h-5 md:h-5 w-auto select-none pointer-events-none transition-all duration-500 ease-in-out ${
                                     isDarkMode ? 'invert brightness-100' : 'invert-0'

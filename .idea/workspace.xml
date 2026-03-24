@@ -4,8 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb564e1f-a707-4140-aab3-f886758e6606" name="Changes" comment="Final Release - Pytja Web V1.0.11">
+    <list default="true" id="bb564e1f-a707-4140-aab3-f886758e6606" name="Changes" comment="Final Release - Pytja Web V1.0.12">
+      <change afterPath="$PROJECT_DIR$/public/SVG/pytja_logo_web.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/layout/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/layout/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/SVG/pytja_logo.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/SVG/pytja_logo_text.svg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,40 +48,41 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;js.debugger.nextJs.config.created.client&quot;: &quot;true&quot;,
-    &quot;js.debugger.nextJs.config.created.server&quot;: &quot;true&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/eliasschmolke/Hof/Code/pytja-web/demo-code&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/eliasschmolke/Hof/Code/pytja-web/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "main",
+    "js.debugger.nextJs.config.created.client": "true",
+    "js.debugger.nextJs.config.created.server": "true",
+    "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "/Users/eliasschmolke/Hof/Code/pytja-web/public/SVG",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "to.speed.mode.migration.done": "true",
+    "ts.external.directory.path": "/Users/eliasschmolke/Hof/Code/pytja-web/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public/SVG" />
       <recent name="$PROJECT_DIR$/demo-code" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public/SVG" />
       <recent name="$PROJECT_DIR$/public/render" />
       <recent name="$PROJECT_DIR$/public" />
       <recent name="$PROJECT_DIR$/app" />
       <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/app/(manual)" />
     </key>
   </component>
   <component name="RunManager" selected="npm.Next.js: server-side">
@@ -131,15 +136,7 @@
       <workItem from="1774181894794" duration="9860000" />
       <workItem from="1774260979781" duration="10775000" />
       <workItem from="1774350916546" duration="3943000" />
-      <workItem from="1774359469213" duration="5602000" />
-    </task>
-    <task id="LOCAL-00005" summary="Commit 5">
-      <option name="closed" value="true" />
-      <created>1772201034536</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1772201034536</updated>
+      <workItem from="1774359469213" duration="8551000" />
     </task>
     <task id="LOCAL-00006" summary="Commit 5">
       <option name="closed" value="true" />
@@ -525,14 +522,21 @@
       <option name="project" value="LOCAL" />
       <updated>1774373543760</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="Final Release - Pytja Web V1.0.12">
+      <option name="closed" value="true" />
+      <created>1774389259508</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1774389259508</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Commit 28" />
     <MESSAGE value="Commit 29" />
     <MESSAGE value="Commit 30" />
     <MESSAGE value="Commit 31" />
@@ -557,6 +561,7 @@
     <MESSAGE value="Final Release - Pytja Web V1.0.9" />
     <MESSAGE value="Final Release - Pytja Web V1.0.10" />
     <MESSAGE value="Final Release - Pytja Web V1.0.11" />
-    <option name="LAST_COMMIT_MESSAGE" value="Final Release - Pytja Web V1.0.11" />
+    <MESSAGE value="Final Release - Pytja Web V1.0.12" />
+    <option name="LAST_COMMIT_MESSAGE" value="Final Release - Pytja Web V1.0.12" />
   </component>
 </project>
