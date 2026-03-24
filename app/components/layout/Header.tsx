@@ -203,13 +203,13 @@ export default function Header() {
                         <div className={`pt-4 border-t flex items-center justify-between text-[9px] font-mono uppercase tracking-widest transition-colors ${
                             isDarkMode ? 'border-white/10 text-white/40' : 'border-black/10 text-black/40'
                         }`}>
-                            <span className="truncate pr-4">Op. Elias Schmolke</span>
+                            <span className="truncate pr-4">Dev. Elias Schmolke</span>
                             <div className="flex gap-4 shrink-0">
                                 <a href="https://github.com/pytja" target="_blank" rel="noopener noreferrer" className={isDarkMode ? 'hover:text-white' : 'hover:text-black'}>
                                     GitHub
                                 </a>
-                                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className={isDarkMode ? 'hover:text-white' : 'hover:text-black'}>
-                                    X/Twitter
+                                <a href="https://www.linkedin.com/in/eliasschmolke/" target="_blank" rel="noopener noreferrer" className={isDarkMode ? 'hover:text-white' : 'hover:text-black'}>
+                                    LinkedIn
                                 </a>
                             </div>
                         </div>
