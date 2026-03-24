@@ -726,7 +726,7 @@ export default function AboutPage() {
                                 <div className="flex-1 flex items-center justify-center relative z-10">
                                     <div className="w-full aspect-[4/3] overflow-hidden relative">
                                         <Image
-                                            src="/render/3d-glass-2.png"
+                                            src="/render/3d-glass-8.png"
                                             alt="Ephemeral WebAssembly Sandbox Architecture"
                                             fill
                                             quality={100}
@@ -841,7 +841,7 @@ export default function AboutPage() {
 
                                 {/* Der Background-Kontext */}
                                 <p className="text-[14px] md:text-[15px] lg:text-[16px] text-gray-500 leading-relaxed font-light">
-                                    After years of focusing strictly on the frontend layer, Pytja began as a passion project to understand the absolute core of data infrastructure. As an International Management student fascinated by system architecture and cybersecurity, my goal was to look beneath the abstractions and comprehend the raw mechanics under the hood. Pytja is the result of this deep dive, an uncompromising exploration of bare-metal engineering where every line of code serves a highly optimized purpose.
+                                    After years of focusing strictly on the frontend layer, Pytja began as a passion project to understand the absolute core of data infrastructure. As an International Management student fascinated by system architecture and cybersecurity, my goal was to look beneath the abstractions and comprehend the raw mechanics under the hood. Pytja is the result of this deep dive, an uncompromising exploration of bare-metal engineering.
                                 </p>
                             </div>
                         </div>
