@@ -242,7 +242,7 @@ export default function ManualPage() {
         <div className="relative min-h-screen bg-white text-black font-sans selection:bg-black selection:text-white">
             <style jsx global>{`
                 html { overflow-y: auto; overflow-x: hidden; height: auto; scroll-behavior: smooth; }
-                body { background-color: #ffffff; min-height: 100vh; position: relative; }
+                body { background-color: #000000; min-height: 100vh; position: relative; }
                 .code-scroll::-webkit-scrollbar { height: 4px; }
                 .code-scroll::-webkit-scrollbar-track { background: transparent; }
                 .code-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 2px; }

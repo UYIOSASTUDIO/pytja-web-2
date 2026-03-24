@@ -14,38 +14,44 @@ export interface ChangeLogEntry {
 
 export const changelogData: ChangeLogEntry[] = [
     {
-        version: "v1.2.0",
-        date: "2026-03-20",
-        hash: "ac7f9d2",
-        type: "core",
-        title: "Compute Architecture: Async Decoupling & WASM Acceleration",
-        desc: "A major compute engine overhaul focusing on thread-pool isolation. CPU-bound workloads are now entirely decoupled from Tokio's async event loop, ensuring microsecond latency for concurrent network I/O.",
+        hash: "v1-0-2-pre",
+        version: "v1.0.2-pre",
+        type: "security",
+        date: "2026-03-24",
+        title: "Security & Infrastructure Updates",
+        desc: "Implemented cross-platform TLS hardening, automated SHA-256 integrity verification in CI/CD, and enhanced TLS-layer error logging.",
         changes: [
-            "Architecture: Decoupled heavy cryptographic operations (PBKDF2, AES-GCM-256) into dedicated synchronous thread pools to prevent head-of-line blocking",
-            "Performance: Implemented an in-memory WebAssembly Module Cache, reducing plugin instantiation from milliseconds (JIT compilation) to low nanoseconds",
-            "Concurrency: Routed WASM initialization and execution operations to isolated execution pools, mathematically eliminating latency spikes on the main data stream",
-            "Memory Safety: Enforced strict Rust 2024 move-semantics for zero-copy ownership transfers during multi-gigabyte encrypted file streams"
+            "Cross-Platform TLS Hardening: Established full compatibility for macOS (LibreSSL) within the bootstrap process. Certificates now reliably inject strict Subject Alternative Names (SANs) cross-platform to ensure secure local zero-trust routing (localhost, 127.0.0.1, 0.0.0.0).",
+            "Automated Integrity Verification (SHA-256): The CI/CD pipeline now fully automates the generation of cryptographic SHA-256 checksums for all release artifacts (macOS, Linux, Windows). This guarantees seamless file integrity and prevents man-in-the-middle attacks during distribution.",
+            "Enhanced Error Logging: The shell now comprehensively captures kernel and network errors at the TLS layer, massively accelerating enterprise debugging for administrators."
         ]
     },
     {
-        version: "v1.1.0",
-        date: "2026-03-10",
-        hash: "b8a3e1f",
-        type: "feature",
-        title: "Distributed State: Redis L1 & Watchdog Concurrency",
-        desc: "Transitioned the core storage layer to a horizontally scalable, Redis-backed architecture. This update fundamentally reduces SQL database loads via L1 caching and introduces distributed concurrency controls.",
+        version: "v1.0.1-pre",
+        date: "2026-03-23",
+        hash: "v1.0.1-pre",
+        type: "core",
+        title: "Major Infrastructure: Async WASM Engine & Redis L1 State",
+        desc: "A massive architectural milestone combining a compute engine overhaul with a horizontally scalable storage layer. CPU-bound workloads are entirely decoupled from the async event loop, while a new Redis-backed L1 cache fundamentally reduces SQL loads and introduces distributed concurrency.",
         changes: [
-            "State Management: Deployed a high-performance Cache-Aside pattern for Virtual Filesystem (VFS) operations, migrating read-heavy endpoints to Redis RAM",
-            "Serialization: Replaced JSON overhead with direct Protobuf byte-encoding enabling near zero-copy streaming to the gRPC socket",
-            "Concurrency: Upgraded ephemeral file locking to a dynamic, heartbeat-driven Watchdog architecture utilizing embedded atomic Lua scripts",
-            "Security: Integrated a global sliding-window rate limiter directly into the JWT zero-trust pipeline with a fail-open resiliency strategy",
-            "Isolation: Enforced strict user-isolated cache keys, guaranteeing that Role-Based Access Control (RBAC) boundaries remain intact at the caching layer"
+            // --- PART 1: COMPUTE & WASM ---
+            "Compute Architecture: Decoupled heavy cryptographic operations (PBKDF2, AES-GCM-256) into dedicated synchronous thread pools to prevent head-of-line blocking",
+            "WASM Performance: Implemented an in-memory WebAssembly Module Cache, reducing plugin instantiation from milliseconds to low nanoseconds",
+            "Thread Isolation: Routed WASM initialization to isolated execution pools, mathematically eliminating latency spikes on the main data stream",
+            "Memory Safety: Enforced strict Rust 2024 move-semantics for zero-copy ownership transfers during multi-gigabyte encrypted file streams",
+
+            // --- PART 2: DISTRIBUTED STATE ---
+            "State Management: Deployed a Cache-Aside pattern for Virtual Filesystem (VFS) operations, migrating read-heavy endpoints to Redis RAM",
+            "Data Serialization: Replaced JSON overhead with direct Protobuf byte-encoding enabling near zero-copy streaming to the gRPC socket",
+            "Distributed Concurrency: Upgraded ephemeral file locking to a dynamic, heartbeat-driven Watchdog architecture utilizing atomic Lua scripts",
+            "Zero-Trust Security: Integrated a global sliding-window rate limiter directly into the JWT pipeline with a fail-open resiliency strategy",
+            "Cache Isolation: Enforced strict user-isolated cache keys, guaranteeing that RBAC boundaries remain intact at the caching layer"
         ]
     },
     {
         version: "v1.0.0-pre",
-        date: "2026-02-28",
-        hash: "init000",
+        date: "2026-03-08",
+        hash: "v.1.0.0-pre",
         type: "core",
         title: "Initial V1 Pre-Release: Sovereign Data Engine",
         desc: "First public pre-release of the Pytja Core Engine. Establishing the foundation for a zero-trust, deterministic database exploration layer powered by Rust and WebAssembly.",
