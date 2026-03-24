@@ -812,7 +812,7 @@ export default function AboutPage() {
 
                                 {/* LinkedIn */}
                                 <a
-                                    href="https://linkedin.com/in/elias-schmolke"
+                                    href="https://www.linkedin.com/in/eliasschmolke/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="flex items-center justify-center w-12 h-12 border border-black/10 bg-white text-black rounded-md hover:bg-black/[0.02] hover:border-black/20 transition-all shadow-sm shrink-0"
