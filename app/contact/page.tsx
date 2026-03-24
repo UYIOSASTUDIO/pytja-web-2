@@ -120,9 +120,13 @@ export default function ContactPage() {
                                     How we store your data
                                     <span className="transform transition-transform duration-300 group-hover:translate-x-1">→</span>
                                 </Link>
+                            </div>
+
+                            {/* Network Links (Mit der Full-Width Trennlinie) */}
+                            <div className="pt-8 border-t border-black/10 space-y-4 -ml-[50vw] pl-[50vw] -mr-6 md:-mr-8 lg:-mr-12 pr-6 md:pr-8 lg:pr-12">
 
                                 {/* --- NEU: GITHUB DISCUSSIONS CALLOUT --- */}
-                                <div className="mt-12 p-5 md:p-6 bg-white border border-black/10 rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.03)] relative overflow-hidden group/board">
+                                <div className="p-5 md:p-6 bg-white border border-black/10 rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.03)] relative overflow-hidden group/board">
                                     <div className="absolute inset-0 bg-gradient-to-br from-black/[0.01] to-transparent opacity-0 group-hover/board:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
                                     <h4 className="text-[11px] font-bold text-black uppercase tracking-widest mb-2 flex items-center gap-2.5 relative z-10">
@@ -143,10 +147,7 @@ export default function ContactPage() {
                                         </svg>
                                     </a>
                                 </div>
-                            </div>
 
-                            {/* Network Links (Mit der Full-Width Trennlinie) */}
-                            <div className="pt-8 border-t border-black/10 space-y-4 -ml-[50vw] pl-[50vw] -mr-6 md:-mr-8 lg:-mr-12 pr-6 md:pr-8 lg:pr-12">
                                 {/* GitHub */}
                                 <a href="https://github.com/pytja" target="_blank" rel="noopener noreferrer" className="group flex items-center gap-4 p-4 border border-black/10 bg-white hover:border-black/10 hover:shadow-md transition-all rounded-lg">
                                     <div className="w-10 h-10 flex items-center justify-center border border-black/10 bg-black/[0.02] text-black group-hover:bg-black group-hover:text-white transition-colors rounded-md">
